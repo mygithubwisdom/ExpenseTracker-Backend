@@ -382,7 +382,7 @@ resource "aws_lambda_function" "define_custom_auth" {
   environment {
     variables = {
       ENV             = "${var.ENV}"
-      USER_TABLE_NAME = "${var.USER_TABLE_NAME}"
+      #USER_TABLE_NAME = "${var.USER_TABLE_NAME}"
       BUCKET_NAME   = "${var.BUCKET_NAME}"
      # MONGODB_URI_1 = "${var.MONGODB_URI_1}"
      # MONGODB_URI_2 = "${var.MONGODB_URI_2}"
@@ -460,10 +460,10 @@ resource "aws_lambda_function" "create_custom_auth" {
   environment {
     variables = {
       ENV             = "${var.ENV}"
-      USER_TABLE_NAME = "${var.USER_TABLE_NAME}"
+     # USER_TABLE_NAME = "${var.USER_TABLE_NAME}"
       BUCKET_NAME   = "${var.BUCKET_NAME}"
-      MONGODB_URI_1 = "${var.MONGODB_URI_1}"
-      MONGODB_URI_2 = "${var.MONGODB_URI_2}"
+     # MONGODB_URI_1 = "${var.MONGODB_URI_1}"
+     # MONGODB_URI_2 = "${var.MONGODB_URI_2}"
     }
   }
 }
@@ -537,7 +537,7 @@ resource "aws_lambda_function" "verify_custom_auth" {
   environment {
     variables = {
       ENV             = "${var.ENV}"
-      USER_TABLE_NAME = "${var.USER_TABLE_NAME}"
+    #  USER_TABLE_NAME = "${var.USER_TABLE_NAME}"
       BUCKET_NAME   = "${var.BUCKET_NAME}"
      # MONGODB_URI_1 = "${var.MONGODB_URI_1}"
      # MONGODB_URI_2 = "${var.MONGODB_URI_2}"
