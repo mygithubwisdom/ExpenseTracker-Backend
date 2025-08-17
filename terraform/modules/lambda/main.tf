@@ -84,7 +84,7 @@ resource "aws_lambda_function" "sign_in_function" {
       POOL_ID = var.POOL_ID
       CLIENT_ID = var.CLIENT_ID
       CLIENT_SECRET = var.CLIENT_SECRET
-      # MONGODB_URI = var.MONGODB_URI
+      MONGODB_URI = var.MONGODB_URI_1
 
     }
   }
@@ -111,7 +111,7 @@ resource "aws_lambda_function" "sign_up_function" {
       POOL_ID = var.POOL_ID
       CLIENT_ID = var.CLIENT_ID
       CLIENT_SECRET = var.CLIENT_SECRET
-      # MONGODB_URI = var.MONGODB_URI
+      MONGODB_URI = var.MONGODB_URI_1
 
     }
   }
@@ -138,7 +138,7 @@ resource "aws_lambda_function" "confirm_signup_function" {
       POOL_ID = var.POOL_ID
       CLIENT_ID = var.CLIENT_ID
       CLIENT_SECRET = var.CLIENT_SECRET
-      # MONGODB_URI = var.MONGODB_URI
+      MONGODB_URI = var.MONGODB_URI_1
     }
   }
   layers = local.layers
@@ -191,7 +191,7 @@ resource "aws_lambda_function" "forget_password_function" {
       POOL_ID = var.POOL_ID
       CLIENT_ID = var.CLIENT_ID
       CLIENT_SECRET = var.CLIENT_SECRET
-      # MONGODB_URI = var.MONGODB_URI
+      MONGODB_URI = var.MONGODB_URI_1
 
     }
   }
@@ -219,7 +219,7 @@ resource "aws_lambda_function" "confirm_forgot_password_function" {
       POOL_ID = var.POOL_ID
       CLIENT_ID = var.CLIENT_ID
       CLIENT_SECRET = var.CLIENT_SECRET
-      # MONGODB_URI = var.MONGODB_URI
+      MONGODB_URI = var.MONGODB_URI_1
 
     }
   }

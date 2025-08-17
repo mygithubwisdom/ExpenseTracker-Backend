@@ -6,9 +6,9 @@ variable "RESOURCES_PREFIX" {}
 #variable "USER_TABLE_NAME" {
   
 #}
-#variable "MONGODB_URI_1" {
- # default = "put your uri here"
-#}
+variable "MONGODB_URI_1" {
+  default = "mongodb+srv://nomsowisdom3286:Mv3OQYjoCznSo0j5@cluster0.kjk8cyq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster01"
+}
 
 #variable "MONGODB_URI_2" {
  # default = "put your uri here"

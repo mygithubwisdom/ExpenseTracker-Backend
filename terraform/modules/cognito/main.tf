@@ -539,7 +539,7 @@ resource "aws_lambda_function" "verify_custom_auth" {
       ENV             = "${var.ENV}"
     #  USER_TABLE_NAME = "${var.USER_TABLE_NAME}"
       BUCKET_NAME   = "${var.BUCKET_NAME}"
-     # MONGODB_URI_1 = "${var.MONGODB_URI_1}"
+      MONGODB_URI_1 = "${var.MONGODB_URI_1}"
      # MONGODB_URI_2 = "${var.MONGODB_URI_2}"
 
     }

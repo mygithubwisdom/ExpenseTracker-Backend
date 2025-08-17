@@ -20,11 +20,11 @@ variable "RESEND_API_KEY" {
 
 #}
 
-#variable "MONGODB_URI_1" {
- # description = "Primary MongoDB connection string"
-  #type        = string
-  #sensitive   = true
-#}
+variable "MONGODB_URI_1" {
+  description = "Primary MongoDB connection string"
+  type        = string
+  sensitive   = true
+}
 
 #variable "MONGODB_URI_2" {
 #  description = "Secondary MongoDB connection string"
