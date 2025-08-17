@@ -101,18 +101,18 @@ module "lambda" {
 #  table_name       = "product_table"
 #}
 
-# module "core" {
-#   source                                            = "./modules/core"
-#   ENV                                               = var.ENV
-#   RESOURCES_PREFIX                                  = local.RESOURCES_PREFIX
-#   CURRENT_ACCOUNT_ID                                = data.aws_caller_identity.current.account_id
-#   API_DOMAIN_NAME                                   = local.DOMAIN_NAME
-#   LAMBDA_CREATE_LINK_FUNCTION_ARN                   = module.lambda.LAMBDA_CREATE_LINK_FUNCTION_ARN
+ module "core" {
+   source                                            = "./modules/core"
+   ENV                                               = var.ENV
+   RESOURCES_PREFIX                                  = local.RESOURCES_PREFIX
+   CURRENT_ACCOUNT_ID                                = data.aws_caller_identity.current.account_id
+   API_DOMAIN_NAME                                   = local.DOMAIN_NAME
+   LAMBDA_CREATE_LINK_FUNCTION_ARN                   = module.lambda.LAMBDA_CREATE_LINK_FUNCTION_ARN
  
-#   LAMBDA_NAMES = [
-   
-#   ] 
-# }
+   LAMBDA_NAMES = [
+    
+   ] 
+ }
 
 module "open" {
   source                                      = "./modules/open"
@@ -141,21 +141,21 @@ module "open" {
 
 
 
-# module "s3" {
-#   source           = "./modules/s3"
-#   RESOURCES_PREFIX = local.RESOURCES_PREFIX
-# }
+ module "s3" {
+   source           = "./modules/s3"
+   RESOURCES_PREFIX = local.RESOURCES_PREFIX
+ }
 
 
 ##==================================================
 #  SES creation..
 ##==================================================
 
-# module "ses" {
-#   source     = "./modules/ses"
-#   FEMI_EMAIL = local.TRACKAM_EMAIL
-#   INFO_EMAIL = local.INFO_EMAIL
-# }
+ module "ses" {
+   source     = "./modules/ses"
+   #TRACKAM_EMAIL = local.TRACKAM_EMAIL
+   INFO_EMAIL    = local.INFO_EMAIL
+ }
 
 
 

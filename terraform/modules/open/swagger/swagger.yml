@@ -419,7 +419,7 @@ paths:
                 type: 'mock'
 
     /v1/confirm_forgot_password:
-        post:
+        post/put:
             consumes:
                 - 'application/json'
             produces:
@@ -433,7 +433,7 @@ paths:
                         Access-Control-Allow-Origin:
                             type: 'string'
             x-amazon-apigateway-integration:
-                httpMethod: 'POST'
+                httpMethod: 'POST''PUT'
                 uri: 'arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/${LAMBDA_CONFIRM_FORGOT_PASSWORD_FUNCTION_ARN}/invocations'
                 responses:
                     default:

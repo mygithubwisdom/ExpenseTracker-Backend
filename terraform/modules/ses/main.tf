@@ -1,4 +1,4 @@
-resource "aws_ses_email_identity" "femi_email" {
+resource "aws_ses_email_identity" "trackam_email" {
   email = var.TRACKAM_EMAIL
 }
 

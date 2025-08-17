@@ -7,11 +7,11 @@ variable "RESOURCES_PREFIX" {}
   
 #}
 #variable "MONGODB_URI_1" {
- # default = "put your url here"
+ # default = "put your uri here"
 #}
 
 #variable "MONGODB_URI_2" {
- # default = "put your url here"
+ # default = "put your uri here"
 #}
 variable "CLIENT_SECRET" {}
 variable "CLIENT_ID" {}
