@@ -39,8 +39,8 @@ jobs:
               run: |
                    curl -L https://github.com/aquasecurity/tfsec/releases/download/v${{ env.TFSEC_VERSION }}/tfsec-linux-amd64.tar.gz -o tfsec.tar.gz
                    tar -xvzf tfsec.tar.gz
-                   chmod +x tfsec
-                   mv tfsec /usr/local/bin/
+                   chmod +x tfsec-linux-amd64
+                   mv tfsec-linux-amd64 /usr/local/bin/tfsec
                    tfsec --version
 
             - name: format Terraform files
