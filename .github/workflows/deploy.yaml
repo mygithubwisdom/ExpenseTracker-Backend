@@ -31,10 +31,10 @@ jobs:
                   terraform_version: ${{ env.TF_VERSION}}
             - name: Install TFLint
               run: |
-                   curl -L https://github.com/terraform-linters/tflint/releases/download/v${{env.TFLINT_VERSION}}/tflint_linux_amd64
-                   curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
-                   unzip tflint.zip -d /usr/local/bin/
-                   tflint --version
+                  curl -L https://github.com/terraform-linters/tflint/releases/download/v${{ env.TFLINT_VERSION }}/tflint_linux_amd64.zip -o tflint.zip
+                  unzip tflint.zip -d /usr/local/bin/
+                  tflint --version
+
             - name: Install TFSec
               run: |
                    curl -L https://github.com/tfsec/tfsec/releases/download/v${{env.TFSEC_VERSION}}/tfsec-linux-amd64
