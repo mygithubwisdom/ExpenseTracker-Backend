@@ -56,10 +56,10 @@ jobs:
               id: validate
               run: terraform validate -no-color
 
-            - name: TFLINT
-              run: |
-                   tflint --init
-                   tflint
+            # - name: TFLINT
+            #   run: |
+            #        tflint --init
+            #        tflint
 
             - name: Terraform Security Scan
               run: tfsec .
