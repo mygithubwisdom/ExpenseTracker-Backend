@@ -37,10 +37,12 @@ jobs:
 
             - name: Install TFSec
               run: |
-                   curl -L https://github.com/tfsec/tfsec/releases/download/v${{env.TFSEC_VERSION}}/tfsec-linux-amd64
+                   curl -L https://github.com/aquasecurity/tfsec/releases/download/v${{ env.TFSEC_VERSION }}/tfsec-linux-amd64.tar.gz -o tfsec.tar.gz
+                   tar -xvzf tfsec.tar.gz
                    chmod +x tfsec
                    mv tfsec /usr/local/bin/
                    tfsec --version
+
             - name: format Terraform files
               id: fmt_recursive
               run: terraform fmt -recursive
