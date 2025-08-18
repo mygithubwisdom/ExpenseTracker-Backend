@@ -29,18 +29,18 @@ jobs:
               uses: hashicorp/setup-terraform@v3
               with:
                   terraform_version: ${{ env.TF_VERSION}}
-            # - name: Install TFLint
-            #   run: |
-            #       curl -L https://github.com/terraform-linters/tflint/releases/download/v${{env.TFLINT_VERSION}}/tflint_linux_amd64
-            #       curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
-            #       unzip tflint.zip -d /usr/local/bin/
-            #       tflint --version
-            # - name: Install TFSec
-            #   run: |
-            #       curl -L https://github.com/tfsec/tfsec/releases/download/v${{env.TFSEC_VERSION}}/tfsec-linux-amd64
-            #       chmod +x tfsec
-            #       mv tfsec /usr/local/bin/
-            #       tfsec --version
+            - name: Install TFLint
+              run: |
+                   curl -L https://github.com/terraform-linters/tflint/releases/download/v${{env.TFLINT_VERSION}}/tflint_linux_amd64
+                   curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
+                   unzip tflint.zip -d /usr/local/bin/
+                   tflint --version
+            - name: Install TFSec
+              run: |
+                   curl -L https://github.com/tfsec/tfsec/releases/download/v${{env.TFSEC_VERSION}}/tfsec-linux-amd64
+                   chmod +x tfsec
+                   mv tfsec /usr/local/bin/
+                   tfsec --version
             - name: format Terraform files
               id: fmt_recursive
               run: terraform fmt -recursive
@@ -56,13 +56,13 @@ jobs:
               id: validate
               run: terraform validate -no-color
 
-            # - name: TFLINT
-            #   run: |
-            #       tflint --init
-            #       tflint
+            - name: TFLINT
+              run: |
+                   tflint --init
+                   tflint
 
-            # - name: Terraform Security Scan
-            #   run: tfsec .
+            - name: Terraform Security Scan
+              run: tfsec .
 
             - name: Terraform Plan
               id: plan

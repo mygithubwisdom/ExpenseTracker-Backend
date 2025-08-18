@@ -56,7 +56,7 @@ module "cognito_end_user" {
   COGNITO_DOMAIN_NAME                    = local.cognito_domain_name
   RESEND_API_KEY                         = var.RESEND_API_KEY
  # USER_TABLE_NAME                        = module.user_table.table_name
-#  MONGODB_URI_1                          = var.MONGODB_URI_1
+  MONGODB_URI_1                          = var.MONGODB_URI_1
  # MONGODB_URI_2                          = var.MONGODB_URI_2
 }
 
@@ -79,7 +79,7 @@ module "lambda" {
   #LOGIN_FUNCTION_ROLE_ARN                   = module.roles.LOGIN_FUNCTION_ROLE_ARN
   FORGET_PASSWORD_FUNCTION_ROLE_ARN         = module.roles.FORGET_PASSWORD_FUNCTION_ROLE_ARN
   CONFIRM_FORGOT_PASSWORD_FUNCTION_ROLE_ARN = module.roles.CONFIRM_FORGOT_PASSWORD_FUNCTION_ROLE_ARN
-  #MONGODB_URI_1                             = var.MONGODB_URI_1
+  MONGODB_URI_1                             = var.MONGODB_URI_1
   #MONGODB_URI_2                            = var.MONGODB_URI_2
   # ================================== CORE FUNCTIONS=================================     
 }

@@ -61,9 +61,9 @@ variable "RESEND_API_KEY" {
   default = "JJJ"
   }
 
-#variable "MONGODB_URI_1" {
- # default = "mongodb+srv://vendlitng2:<db_password>@vendlitng2.t8zkbmx.mongodb.net/?retryWrites=true&w=majority&appName=Vendlitng2"
-#}
+variable "MONGODB_URI_1" {
+  default = "MONGO_DB_URL=mongodb+srv://nomsowisdom3286:Mv3OQYjoCznSo0j5@cluster0.kjk8cyq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster01"
+}
 
 #variable "MONGODB_URI_2" {
  # default = "mongodb+srv://vendlitdbUser:<asdfghjkl>@vendlitng.bw9enxs.mongodb.net/?retryWrites=true&w=majority&appName=Vendlitng"
