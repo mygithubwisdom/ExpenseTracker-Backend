@@ -95,11 +95,17 @@ jobs:
 # Triva is the newer, bigger tool that does what tfsec did (IaC scanning) plus more (container scanning, secrets scanning, etc.). In your workflow, it will check the Terraform code for insecure configurations. (Think of it as a security guard for both your code and infrastructure.)
             # - name: Terraform Security Scan
             #   run: TSec ./terraform this isn't needed because we are using Trivia
-
+        
+            - name: Terraform Init (terraform dir)
+              id: init_terraform_dir
+              working-directory: ./terraform
+              run: terraform init -reconfigure 
+            
            # Step 9: Terraform Plan
            # Reason: Shows what changes Terraform will make before applying them.
            # shows what will be created/changed before doing it.
             - name: Terraform Plan
+              id: plan
               working-directory: ./terraform
               run: terraform plan -no-color -out=tfplan
 
