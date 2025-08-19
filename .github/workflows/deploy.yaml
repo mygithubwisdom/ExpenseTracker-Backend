@@ -42,7 +42,8 @@ jobs:
       # Reason: Lints (checks) your Terraform code for mistakes or bad practices before deploying.
             - name: Install TFLint
               run: |
-                   curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
+                   curl -sLo tflint.zip https://github.com/terraform-linters/tflint/releases/download/v${{ env.TFLINT_VERSION }}/tflint_linux_amd64.zip
+                   unzip tflint.zip -d /usr/local/bin/
                    tflint --version
 # TFLint is like a spell-checker for Terraform code. It catches mistakes such as wrong resource names, unused variables, or typos before deployment.(Think of it like grammar check for Terraform.)
 # TFLint catches Terraform coding mistakes early.
