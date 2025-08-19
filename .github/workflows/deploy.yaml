@@ -100,8 +100,9 @@ jobs:
            # Reason: Shows what changes Terraform will make before applying them.
            # shows what will be created/changed before doing it.
             - name: Terraform Plan
-              id: plan
-              run: terraform plan -no-color  -out=tfplan
+              working-directory: ./terraform
+              run: terraform plan -no-color -out=tfplan
+
            
            # Step 10: Terraform Apply
            # Reason: Actually applies the infrastructure changes to AWS.
