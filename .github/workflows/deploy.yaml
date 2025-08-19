@@ -46,12 +46,13 @@ jobs:
                    unzip tflint.zip -d /usr/local/bin/
                    tflint --version
 # TFLint is like a spell-checker for Terraform code. It catches mistakes such as wrong resource names, unused variables, or typos before deployment.(Think of it like grammar check for Terraform.)
-# TFLint catches Terraform coding mistakes early.
+# TFLint catches Terraform coding mistakes early. 
             # - name: Install TFSec
             #   run: |
             #       curl -s https://raw.githubusercontent.com/aquasecurity/tfsec/master/scripts/install_linux.sh | bash
             #       tfsec --version
 # (now merged into Trivy) → scans Terraform code for security issues. Example: it warns if your S3 bucket is public or if your security group allows 0.0.0.0/0 (open to the whole internet). (Think of it like antivirus for Terraform.)
+# You must install it manually (since it’s no longer preinstalled)
 
       # Format Terraform code  
       # Step 5: Format Terraform code
@@ -92,8 +93,8 @@ jobs:
                 scan-type: config
                 scan-ref: ./terraform   # 👈 points to your terraform directory
 # Triva is the newer, bigger tool that does what tfsec did (IaC scanning) plus more (container scanning, secrets scanning, etc.). In your workflow, it will check the Terraform code for insecure configurations. (Think of it as a security guard for both your code and infrastructure.)
-            - name: Terraform Security Scan
-              run: tfsec .
+            # - name: Terraform Security Scan
+            #   run: TSec ./terraform this isn't needed because we are using Trivia
 
            # Step 9: Terraform Plan
            # Reason: Shows what changes Terraform will make before applying them.
