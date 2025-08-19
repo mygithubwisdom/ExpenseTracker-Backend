@@ -16,31 +16,45 @@ jobs:
             TFLINT_VERSION: '0.46.1'
             TFSEC_VERSION: '1.28.1'
         steps:
+      # Step 1: Get the code
+      # Reason: Pulls your latest code from GitHub so the workflow runs on it.          
             - name: checkout to github repo
               uses: actions/checkout@v2
-
+      
+      # Step 2: Configure AWS credentials
+      # Reason: Provides AWS access keys so Terraform can create resources in AWS.
             - name: Set up AWS credentials
               uses: aws-actions/configure-aws-credentials@v1
               with:
                   aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
                   aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
                   aws-region: ${{ env.AWS_REGION }}
+      
+      # Step 3: Install Terraform
+      # Reason: Sets up the Terraform CLI to run infrastructure commands.
             - name: setup  terraform
               uses: hashicorp/setup-terraform@v3
               with:
                   terraform_version: ${{ env.TF_VERSION}}
+      
+      # Lint Terraform
+      # Step 4: Install TFLint
+      # Reason: Lints (checks) your Terraform code for mistakes or bad practices before deploying.
             - name: Install TFLint
               run: |
-                  curl -L https://github.com/terraform-linters/tflint/releases/download/v${{ env.TFLINT_VERSION }}/tflint_linux_amd64.zip -o tflint.zip
-                  unzip tflint.zip -d /usr/local/bin/
-                  tflint --version
+                   curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
+                   tflint --version
+# TFLint is like a spell-checker for Terraform code. It catches mistakes such as wrong resource names, unused variables, or typos before deployment.(Think of it like grammar check for Terraform.)
+# TFLint catches Terraform coding mistakes early.
+            # - name: Install TFSec
+            #   run: |
+            #       curl -s https://raw.githubusercontent.com/aquasecurity/tfsec/master/scripts/install_linux.sh | bash
+            #       tfsec --version
+# (now merged into Trivy) → scans Terraform code for security issues. Example: it warns if your S3 bucket is public or if your security group allows 0.0.0.0/0 (open to the whole internet). (Think of it like antivirus for Terraform.)
 
-            - name: Install TFSec
-              run: |
-                  curl -s https://raw.githubusercontent.com/aquasecurity/tfsec/master/scripts/install_linux.sh | bash
-                  tfsec --version
-
-
+      # Format Terraform code  
+      # Step 5: Format Terraform code
+      # Reason: Ensures your Terraform files are formatted consistently.          
             - name: format Terraform files
               id: fmt_recursive
               run: terraform fmt -recursive
@@ -48,10 +62,15 @@ jobs:
               id: fmt
               run: terraform fmt -check
 
+      # Step 6: Initialize Terraform
+      # Reason: Downloads required providers (like AWS) and sets up the working directory.
             - name: Terraform Init
               id: init
               run: terraform init
 
+      # Step 7: Validate Terraform
+      # Reason: Validates that the Terraform code is syntactically correct and ready to run.
+      # makes sure the code syntax is correct.
             - name: Terraform Validate
               id: validate
               run: terraform validate -no-color
@@ -61,12 +80,44 @@ jobs:
             #        tflint --init
             #        tflint
 
+            #  Security Scan with Trivy
+            # Step 8: Run Trivy security scan
+            # Reason: Scans your Terraform code for security misconfigurations (e.g., open S3 buckets, weak IAM policies).
+            # checks for insecure Terraform configurations.
+
+            - name: Run Trivy config scan
+              uses: aquasecurity/trivy-action@master
+              with:
+                scan-type: config
+                scan-ref: ./terraform   # 👈 points to your terraform directory
+# Triva is the newer, bigger tool that does what tfsec did (IaC scanning) plus more (container scanning, secrets scanning, etc.). In your workflow, it will check the Terraform code for insecure configurations. (Think of it as a security guard for both your code and infrastructure.)
             - name: Terraform Security Scan
               run: tfsec .
 
+           # Step 9: Terraform Plan
+           # Reason: Shows what changes Terraform will make before applying them.
+           # shows what will be created/changed before doing it.
             - name: Terraform Plan
               id: plan
               run: terraform plan -no-color  -out=tfplan
-
+           
+           # Step 10: Terraform Apply
+           # Reason: Actually applies the infrastructure changes to AWS.
+           # deploys resources to AWS.
             - name: Terraform Apply
               run: terraform apply -auto-approve tfplan
+
+
+
+
+
+
+
+
+
+
+
+
+      
+      
+      
