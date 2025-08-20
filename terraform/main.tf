@@ -36,6 +36,7 @@ module "policy" {
 #  LOGIN_FUNCTION_ROLE_NAME                   = module.roles.LOGIN_FUNCTION_ROLE_NAME
   FORGET_PASSWORD_FUNCTION_ROLE_NAME         = module.roles.FORGET_PASSWORD_FUNCTION_ROLE_NAME
   CONFIRM_FORGOT_PASSWORD_FUNCTION_ROLE_NAME = module.roles.CONFIRM_FORGOT_PASSWORD_FUNCTION_ROLE_NAME
+  CREATE_LINK_FUNCTION_ROLE_NAME             = module.roles.CREATE_LINK_FUNCTION_ROLE_NAME
 
 }
 
@@ -79,6 +80,7 @@ module "lambda" {
   #LOGIN_FUNCTION_ROLE_ARN                   = module.roles.LOGIN_FUNCTION_ROLE_ARN
   FORGET_PASSWORD_FUNCTION_ROLE_ARN         = module.roles.FORGET_PASSWORD_FUNCTION_ROLE_ARN
   CONFIRM_FORGOT_PASSWORD_FUNCTION_ROLE_ARN = module.roles.CONFIRM_FORGOT_PASSWORD_FUNCTION_ROLE_ARN
+  CREATE_LINK_FUNCTION_ROLE_ARN             = module.roles.CREATE_LINK_FUNCTION_ROLE_ARN
   MONGODB_URI_1                             = var.MONGODB_URI_1
   #MONGODB_URI_2                            = var.MONGODB_URI_2
   # ================================== CORE FUNCTIONS=================================     
@@ -110,7 +112,7 @@ module "lambda" {
    LAMBDA_CREATE_LINK_FUNCTION_ARN                   = module.lambda.LAMBDA_CREATE_LINK_FUNCTION_ARN
  
    LAMBDA_NAMES = [
-    
+    module.lambda.LAMBDA_CREATE_LINK_FUNCTION_NAME,
    ] 
  }
 

@@ -58,3 +58,13 @@ output "CONFIRM_FORGOT_PASSWORD_FUNCTION_ROLE_ARN" {
 output "CONFIRM_FORGOT_PASSWORD_FUNCTION_ROLE_NAME" {
   value = aws_iam_role.confirm_forgot_password_function_role.name
 }
+
+# =================================================================
+# CREATE LINK
+# =================================================================
+output "CREATE_LINK_FUNCTION_ROLE_ARN" {
+  value = aws_iam_role.create_link_function_role.arn
+}
+output "CONFIRM_CREATE_LINK_FUNCTION_ROLE_NAME" {
+  value = aws_iam_role.create_link_function_role.name
+}

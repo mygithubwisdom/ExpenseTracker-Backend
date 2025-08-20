@@ -33,3 +33,9 @@ data "archive_file" "lambda_confirm_forgot_password_archive" {
   source_dir  = "${path.module}/codes/confirm_forgot_password"
   output_path = "${path.module}/codes/zip/confirm_forgot_password.zip"
 }
+
+data "archive_file" "lambda_create_link_archive" {
+  type        = "zip"
+  source_dir  = "${path.module}/codes/create_link"
+  output_path = "${path.module}/codes/zip/create_link.zip"
+}
