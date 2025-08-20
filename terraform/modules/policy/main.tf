@@ -119,15 +119,15 @@ resource "aws_iam_policy" "trackam_lambda_policy" {
 
 # ROLE POLICY ATTACHMENT
 resource "aws_iam_role_policy_attachment" "lambda_sign_in_function_attachment" {
-  role       = var.SIGN_IN_FUNCTION_ROLE_NAME
+  role       = var.SIGNIN_FUNCTION_ROLE_NAME
   policy_arn = aws_iam_policy.trackam_lambda_policy.arn
 }
 resource "aws_iam_role_policy_attachment" "lambda_sign_up_function_attachment" {
-  role       = var.SIGN_UP_FUNCTION_ROLE_NAME
+  role       = var.SIGNUP_FUNCTION_ROLE_NAME
   policy_arn = aws_iam_policy.trackam_lambda_policy.arn
 }
 resource "aws_iam_role_policy_attachment" "lambda_confirm_signup_function_attachment" {
-  role       = var.CONFIRM_SIGN_UP_FUNCTION_ROLE_NAME
+  role       = var.CONFIRM_SIGNUP_FUNCTION_ROLE_NAME
   policy_arn = aws_iam_policy.trackam_lambda_policy.arn
 }
 
@@ -137,12 +137,12 @@ resource "aws_iam_role_policy_attachment" "lambda_confirm_signup_function_attach
   #policy_arn = aws_iam_policy.m4ace_lambda_policy.arn
 #}
 
-resource "aws_iam_role_policy_attachment" "lambda_forget_password_function_attachment" {
-  role       = var.FORGET_PASSWORD_FUNCTION_ROLE_NAME
+resource "aws_iam_role_policy_attachment" "lambda_forgot_password_function_attachment" {
+  role       = var.FORGOT_PASSWORD_FUNCTION_ROLE_NAME
   policy_arn = aws_iam_policy.trackam_lambda_policy.arn
 }
 
-resource "aws_iam_role_policy_attachment" "lambda_confirm_forgot_password_function_attachment" {
+resource "aws_iam_role_policy_attachment" "lambda_confirm-forgot-password_function_attachment" {
   role       = var.CONFIRM_FORGOT_PASSWORD_FUNCTION_ROLE_NAME
   policy_arn = aws_iam_policy.trackam_lambda_policy.arn
 }

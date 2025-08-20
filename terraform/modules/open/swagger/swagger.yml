@@ -342,7 +342,7 @@ paths:
           #      passthroughBehavior: 'when_no_match'
            #     type: 'mock'
 
-    /v1/forget_password:
+    /v1/forgot_password:
         post:
             consumes:
                 - 'application/json'
@@ -358,7 +358,7 @@ paths:
                             type: 'string'
             x-amazon-apigateway-integration:
                 httpMethod: 'POST'
-                uri: 'arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/${LAMBDA_FORGET_PASSWORD_FUNCTION_ARN}/invocations'
+                uri: 'arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/${LAMBDA_FORGOT_PASSWORD_FUNCTION_ARN}/invocations'
                 responses:
                     default:
                         statusCode: '200'

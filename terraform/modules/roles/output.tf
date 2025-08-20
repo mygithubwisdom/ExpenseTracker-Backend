@@ -2,30 +2,30 @@
 #  SIGNIN  ROLE
 # =================================================================
 output "SIGN_IN_FUNCTION_ROLE_ARN" {
-  value = aws_iam_role.sign_in_function_role.arn
+  value = aws_iam_role.signin_function_role.arn
 }
 output "SIGN_IN_FUNCTION_ROLE_NAME" {
-  value = aws_iam_role.sign_in_function_role.name
+  value = aws_iam_role.signin_function_role.name
 }
 
 # =================================================================
 #  SIGNUP  ROLE
 # =================================================================
 output "SIGN_UP_FUNCTION_ROLE_ARN" {
-  value = aws_iam_role.sign_up_function_role.arn
+  value = aws_iam_role.signup_function_role.arn
 }
 output "SIGN_UP_FUNCTION_ROLE_NAME" {
-  value = aws_iam_role.sign_up_function_role.name
+  value = aws_iam_role.signup_function_role.name
 }
 
 # =================================================================
 #  CONFIRM SIGNUP  ROLE
 # =================================================================
-output "CONFIRM_SIGN_UP_FUNCTION_ROLE_ARN" {
-  value = aws_iam_role.confirm_sign_up_function_role.arn
+output "CONFIRM_SIGNUP_FUNCTION_ROLE_ARN" {
+  value = aws_iam_role.confirm_signup_function_role.arn
 }
-output "CONFIRM_SIGN_UP_FUNCTION_ROLE_NAME" {
-  value = aws_iam_role.confirm_sign_up_function_role.name
+output "CONFIRM_SIGNUP_FUNCTION_ROLE_NAME" {
+  value = aws_iam_role.confirm_signup_function_role.name
 }
 
 
@@ -42,11 +42,11 @@ output "CONFIRM_SIGN_UP_FUNCTION_ROLE_NAME" {
 # =================================================================
 #  FORGOT PASSWORD
 # =================================================================
-output "FORGET_PASSWORD_FUNCTION_ROLE_ARN" {
-  value = aws_iam_role.forget_password_function_role.arn
+output "FORGOT_PASSWORD_FUNCTION_ROLE_ARN" {
+  value = aws_iam_role.forgot_password_function_role.arn
 }
-output "FORGET_PASSWORD_FUNCTION_ROLE_NAME" {
-  value = aws_iam_role.forget_password_function_role.name
+output "FORGOT_PASSWORD_FUNCTION_ROLE_NAME" {
+  value = aws_iam_role.forgot_password_function_role.name
 }
 
 # =================================================================

@@ -19,8 +19,9 @@ module "roles" {
   ENV              = var.ENV
   AWS_REGION       = var.region
   RESOURCES_PREFIX = local.RESOURCES_PREFIX
-
+  
 }
+
 
 # POLICY
 
@@ -30,14 +31,13 @@ module "policy" {
   AWS_REGION                                 = var.region
   RESOURCES_PREFIX                           = local.RESOURCES_PREFIX
   CURRENT_ACCOUNT_ID                         = data.aws_caller_identity.current.account_id
-  SIGN_IN_FUNCTION_ROLE_NAME                 = module.roles.SIGN_IN_FUNCTION_ROLE_NAME
-  SIGN_UP_FUNCTION_ROLE_NAME                 = module.roles.SIGN_UP_FUNCTION_ROLE_NAME
-  CONFIRM_SIGN_UP_FUNCTION_ROLE_NAME         = module.roles.CONFIRM_SIGN_UP_FUNCTION_ROLE_NAME
+  SIGNIN_FUNCTION_ROLE_NAME                  = module.roles.SIGNIN_FUNCTION_ROLE_NAME
+  SIGNUP_FUNCTION_ROLE_NAME                  = module.roles.SIGNUP_FUNCTION_ROLE_NAME
+  CONFIRM_SIGNUP_FUNCTION_ROLE_NAME          = module.roles.CONFIRM_SIGNUP_FUNCTION_ROLE_NAME
 #  LOGIN_FUNCTION_ROLE_NAME                   = module.roles.LOGIN_FUNCTION_ROLE_NAME
-  FORGET_PASSWORD_FUNCTION_ROLE_NAME         = module.roles.FORGET_PASSWORD_FUNCTION_ROLE_NAME
+  FORGOT_PASSWORD_FUNCTION_ROLE_NAME         = module.roles.FORGOT_PASSWORD_FUNCTION_ROLE_NAME
   CONFIRM_FORGOT_PASSWORD_FUNCTION_ROLE_NAME = module.roles.CONFIRM_FORGOT_PASSWORD_FUNCTION_ROLE_NAME
-  # CREATE_LINK_FUNCTION_ROLE_NAME             = module.roles.CREATE_LINK_FUNCTION_ROLE_NAME
-
+#  CREATE_LINK_FUNCTION_ROLE_NAME             = module.roles.CREATE_LINK_FUNCTION_ROLE_NAME
 }
 
 module "cognito_end_user" {
@@ -63,27 +63,24 @@ module "cognito_end_user" {
 
 # Lambda
 module "lambda" {
-  source                    = "./modules/lambda"
-  ENV                       = var.ENV
-  AWS_REGION                = var.region
-  RESOURCES_PREFIX          = local.RESOURCES_PREFIX
-  #USER_TABLE_NAME           = module.user_table.table_name
-  CLIENT_ID = module.cognito_end_user.COGNITO_USER_CLIENT_ID_A
-  POOL_ID = module.cognito_end_user.COGNITO_USER_POOL_ID
-  CLIENT_SECRET = module.cognito_end_user.COGNITO_USER_CLIENT_SECRET_A
-
-  LAMBDA_JAVASCRIPT_VERSION                 = var.LAMBDA_JAVASCRIPT_VERSION
-  LAMBDA_PYTHON_VERSION                     = var.LAMBDA_PYTHON_VERSION
-  SIGN_IN_FUNCTION_ROLE_ARN                 = module.roles.SIGN_IN_FUNCTION_ROLE_ARN
-  SIGN_UP_FUNCTION_ROLE_ARN                 = module.roles.SIGN_UP_FUNCTION_ROLE_ARN
-  CONFIRM_SIGN_UP_FUNCTION_ROLE_ARN         = module.roles.CONFIRM_SIGN_UP_FUNCTION_ROLE_ARN
-  #LOGIN_FUNCTION_ROLE_ARN                   = module.roles.LOGIN_FUNCTION_ROLE_ARN
-  FORGET_PASSWORD_FUNCTION_ROLE_ARN         = module.roles.FORGET_PASSWORD_FUNCTION_ROLE_ARN
+  source                                 = "./modules/lambda"
+  ENV                                    = var.ENV
+  AWS_REGION                             = var.region
+  RESOURCES_PREFIX                       = local.RESOURCES_PREFIX
+  CLIENT_ID                              = module.cognito_end_user.COGNITO_USER_CLIENT_ID_A
+  POOL_ID                                = module.cognito_end_user.COGNITO_USER_POOL_ID
+  CLIENT_SECRET                          = module.cognito_end_user.COGNITO_USER_CLIENT_SECRET_A
+  LAMBDA_JAVASCRIPT_VERSION              = var.LAMBDA_JAVASCRIPT_VERSION
+  LAMBDA_PYTHON_VERSION                  = var.LAMBDA_PYTHON_VERSION
+  SIGNIN_FUNCTION_ROLE_ARN               = module.roles.SIGNIN_FUNCTION_ROLE_ARN
+  SIGNUP_FUNCTION_ROLE_ARN               = module.roles.SIGNUP_FUNCTION_ROLE_ARN
+  CONFIRM_SIGNUP_FUNCTION_ROLE_ARN       = module.roles.CONFIRM_SIGNUP_FUNCTION_ROLE_ARN
+  # LOGIN_FUNCTION_ROLE_ARN               = module.roles.LOGIN_FUNCTION_ROLE_ARN
+  FORGOT_PASSWORD_FUNCTION_ROLE_ARN      = module.roles.FORGOT_PASSWORD_FUNCTION_ROLE_ARN
   CONFIRM_FORGOT_PASSWORD_FUNCTION_ROLE_ARN = module.roles.CONFIRM_FORGOT_PASSWORD_FUNCTION_ROLE_ARN
-  # CREATE_LINK_FUNCTION_ROLE_ARN             = module.roles.CREATE_LINK_FUNCTION_ROLE_ARN
-  MONGODB_URI_1                             = var.MONGODB_URI_1
-  #MONGODB_URI_2                            = var.MONGODB_URI_2
-  # ================================== CORE FUNCTIONS=================================     
+  # CREATE_LINK_FUNCTION_ROLE_ARN         = module.roles.CREATE_LINK_FUNCTION_ROLE_ARN
+  MONGODB_URI_1                          = var.MONGODB_URI_1
+  # MONGODB_URI_2                         = var.MONGODB_URI_2
 }
 
 
@@ -103,18 +100,18 @@ module "lambda" {
 #  table_name       = "product_table"
 #}
 
- module "core" {
-   source                                            = "./modules/core"
-   ENV                                               = var.ENV
-   RESOURCES_PREFIX                                  = local.RESOURCES_PREFIX
-   CURRENT_ACCOUNT_ID                                = data.aws_caller_identity.current.account_id
-   API_DOMAIN_NAME                                   = local.DOMAIN_NAME
-  #  LAMBDA_CREATE_LINK_FUNCTION_ARN                   = module.lambda.LAMBDA_CREATE_LINK_FUNCTION_ARN
+#  module "core" {
+#    source                                            = "./modules/core"
+#    ENV                                               = var.ENV
+#    RESOURCES_PREFIX                                  = local.RESOURCES_PREFIX
+#    CURRENT_ACCOUNT_ID                                = data.aws_caller_identity.current.account_id
+#    API_DOMAIN_NAME                                   = local.DOMAIN_NAME
+#   #  LAMBDA_CREATE_LINK_FUNCTION_ARN                   = module.lambda.LAMBDA_CREATE_LINK_FUNCTION_ARN
  
-   LAMBDA_NAMES = [
-    # module.lambda.LAMBDA_CREATE_LINK_FUNCTION_NAME,
-   ] 
- }
+#    LAMBDA_NAMES = [
+#     # module.lambda.LAMBDA_CREATE_LINK_FUNCTION_NAME,
+#    ] 
+#  }
 
 module "open" {
   source                                      = "./modules/open"
@@ -122,24 +119,22 @@ module "open" {
   RESOURCES_PREFIX                            = local.RESOURCES_PREFIX
   CURRENT_ACCOUNT_ID                          = data.aws_caller_identity.current.account_id
   API_DOMAIN_NAME                             = local.DOMAIN_NAME
-  LAMBDA_SIGN_IN_FUNCTION_ARN                 = module.lambda.LAMBDA_SIGN_IN_FUNCTION_ARN
-  LAMBDA_SIGN_UP_FUNCTION_ARN                 = module.lambda.LAMBDA_SIGN_UP_FUNCTION_ARN
-  LAMBDA_CONFIRM_SIGN_UP_FUNCTION_ARN         = module.lambda.LAMBDA_CONFIRM_SIGN_UP_FUNCTION_ARN
- # LAMBDA_LOGIN_FUNCTION_ARN                   = module.lambda.LAMBDA_LOGIN_FUNCTION_ARN
-  LAMBDA_FORGET_PASSWORD_FUNCTION_ARN         = module.lambda.LAMBDA_FORGET_PASSWORD_FUNCTION_ARN
+  LAMBDA_SIGNIN_FUNCTION_ARN                  = module.lambda.LAMBDA_SIGNIN_FUNCTION_ARN
+  LAMBDA_SIGNUP_FUNCTION_ARN                  = module.lambda.LAMBDA_SIGNUP_FUNCTION_ARN
+  LAMBDA_CONFIRM_SIGNUP_FUNCTION_ARN          = module.lambda.LAMBDA_CONFIRM_SIGNUP_FUNCTION_ARN
+  # LAMBDA_LOGIN_FUNCTION_ARN                  = module.lambda.LAMBDA_LOGIN_FUNCTION_ARN
+  LAMBDA_FORGOT_PASSWORD_FUNCTION_ARN         = module.lambda.LAMBDA_FORGOT_PASSWORD_FUNCTION_ARN
   LAMBDA_CONFIRM_FORGOT_PASSWORD_FUNCTION_ARN = module.lambda.LAMBDA_CONFIRM_FORGOT_PASSWORD_FUNCTION_ARN
 
-
   LAMBDA_NAMES = [
-    module.lambda.LAMBDA_SIGN_IN_FUNCTION_NAME,
-    module.lambda.LAMBDA_SIGN_UP_FUNCTION_NAME,
-    module.lambda.LAMBDA_CONFIRM_SIGN_UP_FUNCTION_NAME,
-    #module.lambda.LAMBDA_LOGIN_FUNCTION_NAME,
-    module.lambda.LAMBDA_FORGET_PASSWORD_FUNCTION_NAME,
+    module.lambda.LAMBDA_SIGNIN_FUNCTION_NAME,
+    module.lambda.LAMBDA_SIGNUP_FUNCTION_NAME,
+    module.lambda.LAMBDA_CONFIRM_SIGNUP_FUNCTION_NAME,
+    # module.lambda.LAMBDA_LOGIN_FUNCTION_NAME,
+    module.lambda.LAMBDA_FORGOT_PASSWORD_FUNCTION_NAME,
     module.lambda.LAMBDA_CONFIRM_FORGOT_PASSWORD_FUNCTION_NAME,
   ]
 }
-
 
 
 
