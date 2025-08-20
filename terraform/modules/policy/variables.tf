@@ -8,7 +8,7 @@ variable "CONFIRM_SIGN_UP_FUNCTION_ROLE_NAME" {}
 # variable "LOGIN_FUNCTION_ROLE_NAME" {} # Uncomment if you use this in the future
 variable "FORGET_PASSWORD_FUNCTION_ROLE_NAME" {}
 variable "CONFIRM_FORGOT_PASSWORD_FUNCTION_ROLE_NAME" {}
-variable "CREATE_LINK_FUNCTION_ROLE_NAME" {}
+# variable "CREATE_LINK_FUNCTION_ROLE_NAME" {}
 
 
 

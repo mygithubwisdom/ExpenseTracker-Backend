@@ -12,4 +12,4 @@ variable "RESOURCES_PREFIX" {}
 variable "API_DOMAIN_NAME" {
 
 }
-variable "LAMBDA_CREATE_LINK_FUNCTION_ARN" {}
+# variable "LAMBDA_CREATE_LINK_FUNCTION_ARN" {}
