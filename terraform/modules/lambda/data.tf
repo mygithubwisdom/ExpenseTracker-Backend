@@ -39,3 +39,9 @@ data "archive_file" "lambda_create_link_archive" {
   source_dir  = "${path.module}/codes/create_link"
   output_path = "${path.module}/codes/zip/create_link.zip"
 }
+
+data "archive_file" "lambda_create_link_archive" {
+  type        = "zip"
+  source_dir  = "${path.module}/codes/create_link"
+  output_path = "${path.module}/codes/zip/create_link.zip"
+}
