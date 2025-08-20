@@ -12,8 +12,8 @@ data "archive_file" "lambda_signup_archive" {
 
 data "archive_file" "lambda_confirm_signup_archive" {
   type        = "zip"
-  source_dir  = "${path.module}/codes/confirm-signup"
-  output_path = "${path.module}/codes/zip/confirm-signup.zip"
+  source_dir  = "${path.module}/codes/confirm_signup"
+  output_path = "${path.module}/codes/zip/confirm_signup.zip"
 }
 
 #data "archive_file" "lambda_login_archive" {
@@ -22,13 +22,13 @@ data "archive_file" "lambda_confirm_signup_archive" {
   #output_path = "${path.module}/codes/zip/login.zip"
 #}
 
-data "archive_file" "lambda_forget_password_archive" {
+data "archive_file" "lambda_forgot_password_archive" {
   type        = "zip"
-  source_dir  = "${path.module}/codes/forget_password"
-  output_path = "${path.module}/codes/zip/forget_password.zip"
+  source_dir  = "${path.module}/codes/forgot_password"
+  output_path = "${path.module}/codes/zip/forgot_password.zip"
 }
 
-data "archive_file" "lambda_confirm_forgot_password_archive" {
+data "archive_file" "lambda_confirm-forgot-password_archive" {
   type        = "zip"
   source_dir  = "${path.module}/codes/confirm_forgot_password"
   output_path = "${path.module}/codes/zip/confirm_forgot_password.zip"
@@ -40,8 +40,3 @@ data "archive_file" "lambda_confirm_forgot_password_archive" {
 #   output_path = "${path.module}/codes/zip/create_link.zip"
 # }
 
-# data "archive_file" "lambda_create_link_archive" {
-#   type        = "zip"
-#   source_dir  = "${path.module}/codes/create_link"
-#   output_path = "${path.module}/codes/zip/create_link.zip"
-# }

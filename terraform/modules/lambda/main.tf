@@ -68,10 +68,10 @@ O   O  P      E      N  NN
 # =================================================================
 # Create a Lambda function for signin
 # =========================================================================
-resource "aws_lambda_function" "sign_in_function" {
+resource "aws_lambda_function" "signin_function" {
   filename         = "${path.module}/codes/zip/signin.zip"
   function_name    = "${var.RESOURCES_PREFIX}-signin-${local.LAMBDA_VERSION}"
-  role             = var.SIGN_IN_FUNCTION_ROLE_ARN
+  role             = var.SIGNIN_FUNCTION_ROLE_ARN
   handler          = "signin.lambda_handler"
   source_code_hash = data.archive_file.lambda_signin_archive.output_base64sha256
   runtime          = var.LAMBDA_JAVASCRIPT_VERSION
@@ -95,10 +95,10 @@ resource "aws_lambda_function" "sign_in_function" {
 # =================================================================
 # Create a Lambda function for signup
 # =========================================================================
-resource "aws_lambda_function" "sign_up_function" {
+resource "aws_lambda_function" "signup_function" {
   filename         = "${path.module}/codes/zip/signup.zip"
   function_name    = "${var.RESOURCES_PREFIX}-signup-${local.LAMBDA_VERSION}"
-  role             = var.SIGN_UP_FUNCTION_ROLE_ARN
+  role             = var.SIGNUP_FUNCTION_ROLE_ARN
   handler          = "signup.lambda_handler"
   source_code_hash = data.archive_file.lambda_signup_archive.output_base64sha256
   runtime          = var.LAMBDA_JAVASCRIPT_VERSION
@@ -123,10 +123,10 @@ resource "aws_lambda_function" "sign_up_function" {
 # Create a Lambda function for confirm signup
 # =========================================================================
 resource "aws_lambda_function" "confirm_signup_function" {
-  filename         = "${path.module}/codes/zip/confirm-signup.zip"
-  function_name    = "${var.RESOURCES_PREFIX}-confirm-signup-${local.LAMBDA_VERSION}"
-  role             = var.CONFIRM_SIGN_UP_FUNCTION_ROLE_ARN
-  handler          = "confirm-signup.lambda_handler"
+  filename         = "${path.module}/codes/zip/confirm_signup.zip"
+  function_name    = "${var.RESOURCES_PREFIX}-confirm_signup-${local.LAMBDA_VERSION}"
+  role             = var.CONFIRM_SIGNUP_FUNCTION_ROLE_ARN
+  handler          = "confirm_signup.lambda_handler"
   source_code_hash = data.archive_file.lambda_confirm_signup_archive.output_base64sha256
   runtime          = var.LAMBDA_JAVASCRIPT_VERSION
   timeout          = 180
@@ -172,15 +172,15 @@ resource "aws_lambda_function" "confirm_signup_function" {
 
 
 # =================================================================
-# Create a Lambda function for forget_password
+# Create a Lambda function for forgot_password
 # =========================================================================
 
-resource "aws_lambda_function" "forget_password_function" {
-  filename         = "${path.module}/codes/zip/forget_password.zip"
-  function_name    = "${var.RESOURCES_PREFIX}-forget_password-${local.LAMBDA_VERSION}"
-  role             = var.FORGET_PASSWORD_FUNCTION_ROLE_ARN
-  handler          = "forget_password.lambda_handler"
-  source_code_hash = data.archive_file.lambda_forget_password_archive.output_base64sha256
+resource "aws_lambda_function" "forgot_password_function" {
+  filename         = "${path.module}/codes/zip/forgot_password.zip"
+  function_name    = "${var.RESOURCES_PREFIX}-forgot_password-${local.LAMBDA_VERSION}"
+  role             = var.FORGOT_PASSWORD_FUNCTION_ROLE_ARN
+  handler          = "forgot_password.lambda_handler"
+  source_code_hash = data.archive_file.lambda_forgot_password_archive.output_base64sha256
   runtime          = var.LAMBDA_JAVASCRIPT_VERSION
   timeout          = 180
   memory_size      = 1024
@@ -204,11 +204,11 @@ resource "aws_lambda_function" "forget_password_function" {
 # =========================================================================
 
 resource "aws_lambda_function" "confirm_forgot_password_function" {
-  filename         = "${path.module}/codes/zip/confirm_forgot_password.zip"
-  function_name    = "${var.RESOURCES_PREFIX}-confirm_forgot_password-${local.LAMBDA_VERSION}"
+  filename         = "${path.module}/codes/zip/confirm-forgot-password.zip"
+  function_name    = "${var.RESOURCES_PREFIX}-confirm-forgot-password-${local.LAMBDA_VERSION}"
   role             = var.CONFIRM_FORGOT_PASSWORD_FUNCTION_ROLE_ARN
-  handler          = "confirm_forgot_password.lambda_handler"
-  source_code_hash = data.archive_file.lambda_confirm_forgot_password_archive.output_base64sha256
+  handler          = "confirm-forgot-password.lambda_handler"
+  source_code_hash = data.archive_file.lambda_confirm-forgot-password_archive.output_base64sha256
   runtime          = var.LAMBDA_JAVASCRIPT_VERSION
   timeout          = 180
   memory_size      = 1024
