@@ -24,7 +24,7 @@ output "SIGNUP_FUNCTION_ROLE_NAME" {
 output "CONFIRM_SIGNUP_FUNCTION_ROLE_ARN" {
   value = aws_iam_role.confirm_signup_function_role.arn
 }
-  output "SIGNUP_FUNCTION_ROLE_NAME" {
+  output "CONFIRM_SIGNUP_FUNCTION_ROLE_NAME" {
   value = aws_iam_role.confirm_signup_function_role.name
 }
 
