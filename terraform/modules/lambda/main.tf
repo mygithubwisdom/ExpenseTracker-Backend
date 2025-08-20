@@ -230,7 +230,7 @@ resource "aws_lambda_function" "confirm_forgot_password_function" {
 # Create a Lambda function for CREATE-LINK
 # =========================================================================
 
-resource "aws_lambda_function" "confirm_forgot_password_function" {
+resource "aws_lambda_function" "create_link_function" {
   filename         = "${path.module}/codes/zip/create-link.zip"
   function_name    = "${var.RESOURCES_PREFIX}-create-link-${local.LAMBDA_VERSION}"
   role             = var.CONFIRM_FORGOT_PASSWORD_FUNCTION_ROLE_ARN
