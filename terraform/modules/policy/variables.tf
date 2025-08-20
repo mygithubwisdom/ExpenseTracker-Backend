@@ -12,6 +12,7 @@ variable "CONFIRM_SIGN_UP_FUNCTION_ROLE_NAME" {
 variable "FORGET_PASSWORD_FUNCTION_ROLE_NAME" {}
 
 variable "CONFIRM_FORGOT_PASSWORD_FUNCTION_ROLE_NAME" {}
+# variable "CREATE_LINK_FUNCTION_ROLE_NAME" {}
 /*
   ____    ___   ____   _____ 
  / ___|  / _ \ |  _ \ | ____|

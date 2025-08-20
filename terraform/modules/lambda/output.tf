@@ -58,3 +58,13 @@ output "LAMBDA_CONFIRM_FORGOT_PASSWORD_FUNCTION_NAME" {
   value = aws_lambda_function.confirm_forgot_password_function.function_name
 }
 
+# =================================================================
+#  CREATE-LINK
+# =================================================================
+output "LAMBDA_CREATE_LINK_FUNCTION_ARN" {
+  value = aws_lambda_function.create_link_function.arn
+}
+output "LAMBDA_CONFIRM_FORGOT_PASSWORD_FUNCTION_NAME" {
+  value = aws_lambda_function.create_link_function.function_name
+}
+

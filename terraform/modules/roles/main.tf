@@ -120,3 +120,4 @@ resource "aws_iam_role" "confirm_forgot_password_function_role" {
     ]
   })
 }
+
