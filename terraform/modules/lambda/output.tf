@@ -1,30 +1,30 @@
 # =================================================================
 #  SIGNIN
 # =================================================================
-output "LAMBDA_SIGN_IN_FUNCTION_ARN" {
+output "LAMBDA_SIGNIN_FUNCTION_ARN" {
   value = aws_lambda_function.signin_function.arn
 }
-output "LAMBDA_SIGN_IN_FUNCTION_NAME" {
+output "LAMBDA_SIGNIN_FUNCTION_NAME" {
   value = aws_lambda_function.signin_function.function_name
 }
 
 # =================================================================
 #  SIGNUP
 # =================================================================
-output "LAMBDA_SIGN_UP_FUNCTION_ARN" {
+output "LAMBDA_SIGNUP_FUNCTION_ARN" {
   value = aws_lambda_function.signup_function.arn
 }
-output "LAMBDA_SIGN_UP_FUNCTION_NAME" {
+output "LAMBDA_SIGNUP_FUNCTION_NAME" {
   value = aws_lambda_function.signup_function.function_name
 }
 
 # =================================================================
 #  CONFIRM SIGNUP
 # =================================================================
-output "LAMBDA_CONFIRM_SIGN_UP_FUNCTION_ARN" {
-  value = aws_lambda_function.confirm_signup_function.arn
+output "LAMBDA_CONFIRM_SIGNUP_FUNCTION_ARN" {
+  value = aws_lambda_function.signup_function.arn
 }
-output "LAMBDA_CONFIRM_SIGN_UP_FUNCTION_NAME" {
+output "LAMBDA_CONFIRM_SIGNUP_FUNCTION_NAME" {
   value = aws_lambda_function.confirm_signup_function.function_name
 }
 
@@ -39,12 +39,12 @@ output "LAMBDA_CONFIRM_SIGN_UP_FUNCTION_NAME" {
 #}
 
 # =================================================================
-#  FORGET_PASSWORD
+#  FORGOT_PASSWORD
 # =================================================================
-output "LAMBDA_FORGET_PASSWORD_FUNCTION_ARN" {
+output "LAMBDA_FORGOT_PASSWORD_FUNCTION_ARN" {
   value = aws_lambda_function.forgot_password_function.arn
 }
-output "LAMBDA_FORGET_PASSWORD_FUNCTION_NAME" {
+output "LAMBDA_FORGOT_PASSWORD_FUNCTION_NAME" {
   value = aws_lambda_function.forgot_password_function.function_name
 }
 
@@ -67,4 +67,6 @@ output "LAMBDA_CONFIRM_FORGOT_PASSWORD_FUNCTION_NAME" {
 # output "LAMBDA_CREATE_LINK_FUNCTION_NAME" {
 #   value = aws_lambda_function.create_link_function.function_name
 # }
+
+
 
