@@ -121,23 +121,23 @@ resource "aws_iam_role" "confirm_forgot_password_function_role" {
   })
 }
 
-# =================================================================
-#  CREATE LINK ROLE
-# =================================================================
-resource "aws_iam_role" "create_link_function_role" {
-  name = "CREATE_LINK_FUNCTION_${var.RESOURCES_PREFIX}"
+# # =================================================================
+# #  CREATE LINK ROLE
+# # =================================================================
+# resource "aws_iam_role" "create_link_function_role" {
+#   name = "CREATE_LINK_FUNCTION_${var.RESOURCES_PREFIX}"
 
-  assume_role_policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Effect = "Allow"
-        Principal = {
-          Service = "lambda.amazonaws.com"
-        }
-        Action = "sts:AssumeRole"
-      }
-    ]
-  })
-}
+#   assume_role_policy = jsonencode({
+#     Version = "2012-10-17"
+#     Statement = [
+#       {
+#         Effect = "Allow"
+#         Principal = {
+#           Service = "lambda.amazonaws.com"
+#         }
+#         Action = "sts:AssumeRole"
+#       }
+#     ]
+#   })
+# }
 
