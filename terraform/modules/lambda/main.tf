@@ -233,7 +233,7 @@ resource "aws_lambda_function" "confirm_forgot_password_function" {
 resource "aws_lambda_function" "create_link_function" {
   filename         = "${path.module}/codes/zip/create-link.zip"
   function_name    = "${var.RESOURCES_PREFIX}-create-link-${local.LAMBDA_VERSION}"
-  role             = var.CONFIRM_FORGOT_PASSWORD_FUNCTION_ROLE_ARN
+  role             = var.CREATE_LINK_FUNCTION_ROLE_ARN
   handler          = "create-link.lambda_handler"
   source_code_hash = data.archive_file.lambda_confirm_create-link_archive.output_base64sha256
   runtime          = var.LAMBDA_JAVASCRIPT_VERSION

@@ -4,17 +4,15 @@ variable "RESOURCES_PREFIX" {}
 variable "CURRENT_ACCOUNT_ID" {}
 variable "SIGN_IN_FUNCTION_ROLE_NAME" {}
 variable "SIGN_UP_FUNCTION_ROLE_NAME" {}
-variable "CONFIRM_SIGN_UP_FUNCTION_ROLE_NAME" {
-}
-
-#variable "LOGIN_FUNCTION_ROLE_NAME" {}
-
+variable "CONFIRM_SIGN_UP_FUNCTION_ROLE_NAME" {}
+# variable "LOGIN_FUNCTION_ROLE_NAME" {} # Uncomment if you use this in the future
 variable "FORGET_PASSWORD_FUNCTION_ROLE_NAME" {}
-
 variable "CONFIRM_FORGOT_PASSWORD_FUNCTION_ROLE_NAME" {}
-# variable "CREATE_LINK_FUNCTION_ROLE_NAME" {}
-/*
-  ____    ___   ____   _____ 
+variable "CREATE_LINK_FUNCTION_ROLE_NAME" {}
+
+
+
+/*  ____    ___   ____   _____ 
  / ___|  / _ \ |  _ \ | ____|
 | |     | | | || |_) ||  _|  
 | |___  | |_| ||  _ < | |___ 
