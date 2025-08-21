@@ -147,3 +147,55 @@ resource "aws_iam_role_policy_attachment" "lambda_confirm-forgot-password_functi
 #   role       = var.CREATE_LINK_FUNCTION_ROLE_NAME
 #   policy_arn = aws_iam_policy.trackam_lambda_policy.arn
 # }
+
+data "aws_iam_policy_document" "cognito_sms" {
+  statement {
+    actions   = ["sns:Publish"]
+    resources = ["*"] # or restrict to specific SNS topics if you have them
+    effect    = "Allow"
+  }
+}
+
+resource "aws_iam_policy" "cognito_sms" {
+  name        = "Cognito-SMS-Policy"
+  description = "Policy to allow Cognito to send SMS via SNS"
+  policy      = data.aws_iam_policy_document.cognito_sms.json
+}
+
+resource "aws_iam_role" "cognito_sms_role" {
+  name = "CognitoSMSRole"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Principal = {
+          Service = "cognito-idp.amazonaws.com"
+        }
+        Action = "sts:AssumeRole"
+      }
+    ]
+  })
+}
+
+resource "aws_iam_policy" "cognito_sms_policy" {
+  name        = "CognitoSMSPolicy"
+  description = "Policy allowing Cognito to send SMS via SNS"
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect   = "Allow"
+        Action   = ["sns:Publish"]
+        Resource = "*"
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "cognito_sms_role_attach" {
+  role       = aws_iam_role.cognito_sms_role.name
+  policy_arn = aws_iam_policy.cognito_sms_policy.arn
+}
