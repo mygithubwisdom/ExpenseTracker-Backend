@@ -1,4 +1,4 @@
-# TrackAm Backend Brief
+# TrackAm Backend 
 
 The TrackAm Backend powers the expense tracking system by providing authentication, data management, and communication services. It is built using serverless architecture on AWS, with MongoDB as the database.
 
