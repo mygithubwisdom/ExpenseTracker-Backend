@@ -115,6 +115,7 @@ jobs:
            # deploys resources to AWS.
             - name: Terraform Apply
               run: terraform apply -auto-approve 
+              working-directory: ./terraform
 
 
 
