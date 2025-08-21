@@ -44,7 +44,7 @@ resource "aws_api_gateway_deployment" "api_deployment" {
   depends_on = [
     aws_lambda_permission.lambda_permissions,
     aws_api_gateway_rest_api_policy.api_policy,
-    aws_api_gateway_rest_api.api_gateway
+    # aws_api_gateway_rest_api.api_gateway
   ]
 }
 
