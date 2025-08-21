@@ -109,13 +109,17 @@ jobs:
               working-directory: ./terraform
               run: terraform plan -no-color -out=tfplan
 
-           
+            - name: Terraform Destroy
+              if: always() # always runs, can add condition for errors later
+              run: terraform destroy -auto-approve
+              working-directory: ./terraform
+
            # Step 10: Terraform Apply
            # Reason: Actually applies the infrastructure changes to AWS.
            # deploys resources to AWS.
-            - name: Terraform Apply
-              run: terraform apply -auto-approve 
-              working-directory: ./terraform
+            # - name: Terraform Apply
+            #   run: terraform apply -auto-approve 
+            #   working-directory: ./terraform
 
 
 
