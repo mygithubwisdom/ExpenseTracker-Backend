@@ -48,21 +48,21 @@ resource "aws_cognito_user_pool" "congito_end_user_userpool" {
       priority = 1
     }
   }
-  # lambda_config {
-  #   custom_message                 = aws_lambda_function.custom_message.arn
-  #   create_auth_challenge          = aws_lambda_function.create_custom_auth.arn
-  #   define_auth_challenge          = aws_lambda_function.define_custom_auth.arn
-  #   verify_auth_challenge_response = aws_lambda_function.verify_custom_auth.arn
-  # }
+   lambda_config {
+     custom_message                 = aws_lambda_function.custom_message.arn
+     create_auth_challenge          = aws_lambda_function.create_custom_auth.arn
+     define_auth_challenge          = aws_lambda_function.define_custom_auth.arn
+     verify_auth_challenge_response = aws_lambda_function.verify_custom_auth.arn
+   }
   sms_configuration {
     external_id    = var.IAM_COGNITO_ASSUMABLE_ROLE_EXTERNAL_ID
     sns_caller_arn = aws_iam_role.cognito_sms_role.arn
   }
 
-  # email_configuration {
-  #   email_sending_account = "DEVELOPER"
-  #   # source_arn            = "arn:aws:ses:${var.AWS_REGION}:${var.CURRENT_ACCOUNT_ID}:identity/${var.EMAIL_SENDER}"
-  # }
+   email_configuration {
+     email_sending_account = "DEVELOPER"
+      source_arn            = "arn:aws:ses:${var.AWS_REGION}:${var.CURRENT_ACCOUNT_ID}:identity/${var.EMAIL_SENDER}"
+   }
 
   schema {
     name                     = "org_name"
@@ -154,14 +154,14 @@ resource "aws_cognito_user_pool_client" "cognito_client_end_user" {
 
 
 resource "aws_iam_policy" "sms_policy" {
-  name   = "${var.ENV}-m4ace-${var.RESOURCE_PREFIX}-sms_policy-core"
+  name   = "${var.ENV}-Trackam-${var.RESOURCE_PREFIX}-sms_policy-core"
   policy = <<EOF
 {
   "Version": "2012-10-17",
   "Statement": [
     {
       "Action": [
-          "sns:*"
+          "sns:Publish"
       ],
       "Effect": "Allow",
       "Resource": "*"
@@ -196,7 +196,7 @@ resource "aws_iam_role_policy_attachment" "policy_role_attachment" {
 }
 
 resource "aws_iam_role" "group_role" {
-  name = "${var.ENV}-${var.RESOURCE_PREFIX}-m4ace-group-role"
+  name = "${var.ENV}-${var.RESOURCE_PREFIX}-Trackam-group-role"
 
   assume_role_policy = <<EOF
 {
@@ -551,3 +551,24 @@ data "archive_file" "verify_auth_challenge_lambda_function" {
   source_file = "${path.module}/code/custom-auth/verifyAuthChallenge.py"
   output_path = "${path.module}/code/zip/verifyAuthChallenge.zip"
 }
+
+# resource "aws_iam_role" "cognito_sms_role" {
+#   name = "cognito-sms-role"
+#   assume_role_policy = jsonencode({
+#     Version = "2012-10-17"
+#     Statement = [
+#       {
+#         Effect = "Allow"
+#         Principal = {
+#           Service = "cognito-idp.amazonaws.com"
+#         }
+#         Action = "sts:AssumeRole"
+#       }
+#     ]
+#   })
+# }
+
+# resource "aws_iam_role_policy_attachment" "cognito_sms_attach" {
+#   role       = aws_iam_role.cognito_sms_role.name
+#   policy_arn = var.COGNITO_SMS_POLICY_ARN
+# }
