@@ -18,6 +18,7 @@ variable "COGNITO_DOMAIN_NAME" {}
 variable "COGNITO_SMS_POLICY_ARN"{
   description = "ARN of the Cognito SMS policy"
   type        = string
+    default     = "arn:aws:iam::aws:policy/service-role/AmazonSNSRole"
 }
 variable "RESEND_API_KEY" {
 
