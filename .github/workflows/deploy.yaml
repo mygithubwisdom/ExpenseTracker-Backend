@@ -114,7 +114,7 @@ jobs:
            # Reason: Actually applies the infrastructure changes to AWS.
            # deploys resources to AWS.
             - name: Terraform Apply
-              run: terraform apply -auto-approve tfplan
+              run: terraform apply -auto-approve 
 
 
 
