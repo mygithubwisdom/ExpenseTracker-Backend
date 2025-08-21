@@ -43,7 +43,8 @@ resource "aws_api_gateway_deployment" "api_deployment" {
 
   depends_on = [
     aws_lambda_permission.lambda_permissions,
-    aws_api_gateway_rest_api_policy.api_policy
+    aws_api_gateway_rest_api_policy.api_policy,
+    aws_api_gateway_rest_api.api_gateway
   ]
 }
 
@@ -80,7 +81,7 @@ resource "aws_lambda_permission" "lambda_permissions" {
   function_name = var.LAMBDA_NAMES[count.index]
   action        = "lambda:InvokeFunction"
   principal     = "apigateway.amazonaws.com"
-  source_arn    = "${aws_api_gateway_rest_api.api_gateway.execution_arn}/*/*"
+  source_arn    = "${aws_api_gateway_rest_api.api_gateway.execution_arn}/*/*/*"
   depends_on = [
     aws_api_gateway_rest_api.api_gateway
   ]
