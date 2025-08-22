@@ -59,10 +59,10 @@ resource "aws_cognito_user_pool" "congito_end_user_userpool" {
     sns_caller_arn = aws_iam_role.cognito_sms_role.arn
   }
 
-   email_configuration {
-     email_sending_account = "DEVELOPER"
-      source_arn            = "arn:aws:ses:${var.AWS_REGION}:${var.CURRENT_ACCOUNT_ID}:identity/${var.EMAIL_SENDER}"
-   }
+  #  email_configuration {
+  #    email_sending_account = "DEVELOPER"
+  #     source_arn            = "arn:aws:ses:${var.AWS_REGION}:${var.CURRENT_ACCOUNT_ID}:identity/${var.EMAIL_SENDER}"
+  #  }
 
   schema {
     name                     = "org_name"

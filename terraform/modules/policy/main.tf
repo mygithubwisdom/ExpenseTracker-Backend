@@ -143,6 +143,11 @@ resource "aws_iam_role_policy_attachment" "lambda_confirm-forgot-password_functi
   policy_arn = aws_iam_policy.trackam_lambda_policy.arn
 }
 
+resource "aws_iam_role_policy_attachment" "lambda_PUT-confirm-forgot-password_function_attachment" {
+  role       = var.PUT_CONFIRM_FORGOT_PASSWORD_FUNCTION_ROLE_NAME
+  policy_arn = aws_iam_policy.trackam_lambda_policy.arn
+}
+
 # resource "aws_iam_role_policy_attachment" "lambda_create_link_function_attachment" {
 #   role       = var.CREATE_LINK_FUNCTION_ROLE_NAME
 #   policy_arn = aws_iam_policy.trackam_lambda_policy.arn

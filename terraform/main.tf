@@ -38,6 +38,7 @@ module "policy" {
   FORGOT_PASSWORD_FUNCTION_ROLE_NAME         = module.roles.FORGOT_PASSWORD_FUNCTION_ROLE_NAME
   CONFIRM_FORGOT_PASSWORD_FUNCTION_ROLE_NAME = module.roles.CONFIRM_FORGOT_PASSWORD_FUNCTION_ROLE_NAME
 #  CREATE_LINK_FUNCTION_ROLE_NAME             = module.roles.CREATE_LINK_FUNCTION_ROLE_NAME
+PUT_CONFIRM_FORGOT_PASSWORD_FUNCTION_ROLE_NAME = module.roles.PUT_CONFIRM_FORGOT_PASSWORD_FUNCTION_ROLE_NAME
 }
 
 module "cognito_end_user" {
@@ -78,6 +79,7 @@ module "lambda" {
   # LOGIN_FUNCTION_ROLE_ARN               = module.roles.LOGIN_FUNCTION_ROLE_ARN
   FORGOT_PASSWORD_FUNCTION_ROLE_ARN      = module.roles.FORGOT_PASSWORD_FUNCTION_ROLE_ARN
   CONFIRM_FORGOT_PASSWORD_FUNCTION_ROLE_ARN = module.roles.CONFIRM_FORGOT_PASSWORD_FUNCTION_ROLE_ARN
+  PUT_CONFIRM_FORGOT_PASSWORD_FUNCTION_ROLE_ARN = module.roles.PUT_CONFIRM_FORGOT_PASSWORD_FUNCTION_ROLE_ARN
   # CREATE_LINK_FUNCTION_ROLE_ARN         = module.roles.CREATE_LINK_FUNCTION_ROLE_ARN
   MONGODB_URI_1                          = var.MONGODB_URI_1
   # MONGODB_URI_2                         = var.MONGODB_URI_2
@@ -125,6 +127,7 @@ module "open" {
   # LAMBDA_LOGIN_FUNCTION_ARN                  = module.lambda.LAMBDA_LOGIN_FUNCTION_ARN
   LAMBDA_FORGOT_PASSWORD_FUNCTION_ARN         = module.lambda.LAMBDA_FORGOT_PASSWORD_FUNCTION_ARN
   LAMBDA_CONFIRM_FORGOT_PASSWORD_FUNCTION_ARN = module.lambda.LAMBDA_CONFIRM_FORGOT_PASSWORD_FUNCTION_ARN
+  LAMBDA_PUT_CONFIRM_FORGOT_PASSWORD_FUNCTION_ARN = module.lambda.LAMBDA_PUT_CONFIRM_FORGOT_PASSWORD_FUNCTION_ARN  
 
   LAMBDA_NAMES = [
     module.lambda.LAMBDA_SIGNIN_FUNCTION_NAME,
@@ -133,26 +136,27 @@ module "open" {
     # module.lambda.LAMBDA_LOGIN_FUNCTION_NAME,
     module.lambda.LAMBDA_FORGOT_PASSWORD_FUNCTION_NAME,
     module.lambda.LAMBDA_CONFIRM_FORGOT_PASSWORD_FUNCTION_NAME,
+    module.lambda.LAMBDA_PUT_CONFIRM_FORGOT_PASSWORD_FUNCTION_NAME,
   ]
 }
 
 
 
- module "s3" {
-   source           = "./modules/s3"
-   RESOURCES_PREFIX = local.RESOURCES_PREFIX
- }
+#  module "s3" {
+#    source           = "./modules/s3"
+#    RESOURCES_PREFIX = local.RESOURCES_PREFIX
+#  }
 
 
 ##==================================================
 #  SES creation....................
 ##==================================================
 
- module "ses" {
-   source     = "./modules/ses"
-   #TRACKAM_EMAIL = local.TRACKAM_EMAIL
-   INFO_EMAIL    = local.INFO_EMAIL
- }
+#  module "ses" {
+#    source     = "./modules/ses"
+#    #TRACKAM_EMAIL = local.TRACKAM_EMAIL
+#    INFO_EMAIL    = local.INFO_EMAIL
+#  }
 
 
 

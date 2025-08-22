@@ -252,3 +252,30 @@ resource "aws_lambda_function" "confirm_forgot_password_function" {
 #   }
 #   layers = local.layers
 # }
+
+# =================================================================
+# Create a Lambda function for put-confirm_forgot_password
+# =========================================================================
+
+resource "aws_lambda_function" "put_confirm_forgot_password_function" {
+  filename         = "${path.module}/codes/zip/PUT-confirm-forgot-password.zip"
+  function_name    = "${var.RESOURCES_PREFIX}-PUT-confirm-forgot-password-${local.LAMBDA_VERSION}"
+  role             = var.PUT_CONFIRM_FORGOT_PASSWORD_FUNCTION_ROLE_ARN
+  handler          = "PUT-confirm-forgot-password.lambda_handler"
+  source_code_hash = data.archive_file.lambda_put_confirm_forgot_password_archive.output_base64sha256
+  runtime          = var.LAMBDA_JAVASCRIPT_VERSION
+  timeout          = 180
+  memory_size      = 1024
+
+  environment {
+    variables = {
+      ENV         = "${var.ENV}"
+      POOL_ID = var.POOL_ID
+      CLIENT_ID = var.CLIENT_ID
+      CLIENT_SECRET = var.CLIENT_SECRET
+      MONGODB_URI = var.MONGODB_URI_1
+
+    }
+  }
+  layers = local.layers
+}
