@@ -182,7 +182,7 @@ resource "aws_iam_role" "cognito_sms_role" {
 resource "aws_iam_policy" "cognito_sms_policy" {
   name        = "CognitoSMSPolicy"
   description = "Policy allowing Cognito to send SMS via SNS"
-
+  
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
