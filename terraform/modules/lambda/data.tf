@@ -42,6 +42,6 @@ data "archive_file" "lambda_confirm_forgot_password_archive" {
 
 data "archive_file" "lambda_put_confirm_forgot_password_archive" {
   type        = "zip"
-  source_dir  = "${path.module}/codes/PUT-confirm-forgot-password"
+  source_dir  = "${path.module}/codes/PUT-confirm-forgot-password copy"
   output_path = "${path.module}/codes/zip/PUT-confirm-forgot-password.zip"
 }
