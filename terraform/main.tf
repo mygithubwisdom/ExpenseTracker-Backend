@@ -138,21 +138,21 @@ module "open" {
 
 
 
- module "s3" {
-   source           = "./modules/s3"
-   RESOURCES_PREFIX = local.RESOURCES_PREFIX
- }
+#  module "s3" {
+#    source           = "./modules/s3"
+#    RESOURCES_PREFIX = local.RESOURCES_PREFIX
+#  }
 
 
 ##==================================================
 #  SES creation....................
 ##==================================================
 
- module "ses" {
-   source     = "./modules/ses"
-   #TRACKAM_EMAIL = local.TRACKAM_EMAIL
-   INFO_EMAIL    = local.INFO_EMAIL
- }
+#  module "ses" {
+#    source     = "./modules/ses"
+#    #TRACKAM_EMAIL = local.TRACKAM_EMAIL
+#    INFO_EMAIL    = local.INFO_EMAIL
+#  }
 
 
 
