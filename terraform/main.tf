@@ -86,7 +86,7 @@ module "lambda" {
 }
 
 
-# DYNAMODB TABLE 
+# DYNAMODB TABLE .....
 #module "user_table" {
  # source           = "./modules/dynamodb/user_table"
   #ENV              = var.ENV
