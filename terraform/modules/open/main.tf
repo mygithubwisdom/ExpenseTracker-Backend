@@ -19,7 +19,7 @@ resource "aws_api_gateway_rest_api" "api_gateway" {
   body                         = data.template_file.swagger.rendered
   description                  = "API Gateway REST API for Noughttrapper APP"
   name                         = "${var.RESOURCES_PREFIX}-open-rest-api"
-  disable_execute_api_endpoint = true
+  disable_execute_api_endpoint = false
 }
 
 

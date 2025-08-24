@@ -84,7 +84,7 @@ paths:
                         }
                 passthroughBehavior: 'when_no_templates'
                 contentHandling: 'CONVERT_TO_TEXT'
-                type: 'AWS_PROXY'
+                type: 'aws'
         options:
             consumes:
                 - 'application/json'
@@ -160,7 +160,7 @@ paths:
                                 }        
                 passthroughBehavior: 'when_no_templates'
                 contentHandling: 'CONVERT_TO_TEXT'
-                type: 'AWS_PROXY'
+                type: 'aws'
         options:
             consumes:
                 - 'application/json'
@@ -236,7 +236,7 @@ paths:
                         }
                 passthroughBehavior: 'when_no_templates'
                 contentHandling: 'CONVERT_TO_TEXT'
-                type: 'AWS_PROXY'
+                type: 'aws'
         options:
             consumes:
                 - 'application/json'
@@ -312,7 +312,7 @@ paths:
                         }
                 passthroughBehavior: 'when_no_templates'
                 contentHandling: 'CONVERT_TO_TEXT'
-                type: 'AWS_PROXY'
+                type: 'aws'
         options:
             consumes:
                 - 'application/json'
@@ -388,7 +388,7 @@ paths:
                         }
                 passthroughBehavior: 'when_no_templates'
                 contentHandling: 'CONVERT_TO_TEXT'
-                type: 'AWS_PROXY'
+                type: 'aws'
         options:
             consumes:
                 - 'application/json'
