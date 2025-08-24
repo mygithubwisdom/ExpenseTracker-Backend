@@ -62,7 +62,7 @@ variable "RESEND_API_KEY" {
   }
 
 variable "MONGODB_URI_1" {
-  default = "MONGO_DB_URL=mongodb+srv://nomsowisdom3286:Mv3OQYjoCznSo0j5@cluster0.kjk8cyq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster01"
+  default = "mongodb+srv://nomsowisdom3286:Mv3OQYjoCznSo0j5@cluster0.kjk8cyq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster01"
 }
 
 #variable "MONGODB_URI_2" {
