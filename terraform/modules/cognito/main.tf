@@ -293,23 +293,23 @@ resource "aws_lambda_layer_version" "request_layer" {
   description              = "request layer"
 }
 
-resource "aws_lambda_function" "custom_message" {
-  filename      = "${path.module}/code/zip/customSignUpMessage.zip"
-  function_name = "${var.RESOURCE_PREFIX}_custom_message_lambda_function"
-  role          = aws_iam_role.m4ace_lambda_iam.arn
-  handler       = "customSignUpMessage.lambda_handler"
-  runtime       = var.PYTHON_LAMBDA_VERSION
-  timeout       = 60
+# resource "aws_lambda_function" "custom_message" {
+#   filename      = "${path.module}/code/zip/customSignUpMessage.zip"
+#   function_name = "${var.RESOURCE_PREFIX}_custom_message_lambda_function"
+#   role          = aws_iam_role.m4ace_lambda_iam.arn
+#   handler       = "customSignUpMessage.lambda_handler"
+#   runtime       = var.PYTHON_LAMBDA_VERSION
+#   timeout       = 60
 
-  environment {
-    variables = {
-      ENV            = "${var.ENV}"
-      BUCKET_NAME    = "${var.BUCKET_NAME}"
-      # RESEND_API_KEY = var.RESEND_API_KEY
-    }
-  }
-  layers = ["${aws_lambda_layer_version.request_layer.arn}"]
-}
+#   environment {
+#     variables = {
+#       ENV            = "${var.ENV}"
+#       BUCKET_NAME    = "${var.BUCKET_NAME}"
+#       # RESEND_API_KEY = var.RESEND_API_KEY
+#     }
+#   }
+#   layers = ["${aws_lambda_layer_version.request_layer.arn}"]
+# }
 
 
 data "archive_file" "lambda_function" {
