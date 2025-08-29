@@ -121,7 +121,7 @@ resource "aws_cognito_user_pool" "congito_end_user_userpool" {
   tags = var.COMMON_TAGS
 }
 
-# creates user pool domain link 
+# creates user pool domain link ......
 resource "aws_cognito_user_pool_domain" "main" {
   domain       = "${var.RESOURCE_PREFIX}-112234"
   user_pool_id = aws_cognito_user_pool.congito_end_user_userpool.id
