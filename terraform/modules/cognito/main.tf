@@ -49,7 +49,7 @@ resource "aws_cognito_user_pool" "congito_end_user_userpool" {
     }
   }
    lambda_config {
-     custom_message                 = aws_lambda_function.custom_message.arn
+    #  custom_message                 = aws_lambda_function.custom_message.arn
      create_auth_challenge          = aws_lambda_function.create_custom_auth.arn
      define_auth_challenge          = aws_lambda_function.define_custom_auth.arn
      verify_auth_challenge_response = aws_lambda_function.verify_custom_auth.arn
