@@ -121,7 +121,7 @@ resource "aws_cognito_user_pool" "congito_end_user_userpool" {
   tags = var.COMMON_TAGS
 }
 
-# creates user pool domain link 
+# creates user pool domain link ......
 resource "aws_cognito_user_pool_domain" "main" {
   domain       = "${var.RESOURCE_PREFIX}-112234"
   user_pool_id = aws_cognito_user_pool.congito_end_user_userpool.id
@@ -271,16 +271,16 @@ resource "aws_iam_role_policy" "m4ace_lambda_role_policy" {
 EOF
 }
 
-resource "aws_lambda_permission" "customSignUpMessage" {
-  statement_id  = "AllowExecutionFromCognito"
-  action        = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.custom_message.function_name
-  principal     = "cognito-idp.amazonaws.com"
-  source_arn    = aws_cognito_user_pool.congito_end_user_userpool.arn
-  depends_on    = [aws_lambda_function.custom_message]
+# resource "aws_lambda_permission" "customSignUpMessage" {
+#   statement_id  = "AllowExecutionFromCognito"
+#   action        = "lambda:InvokeFunction"
+#   function_name = aws_lambda_function.custom_message.function_name
+#   principal     = "cognito-idp.amazonaws.com"
+#   source_arn    = aws_cognito_user_pool.congito_end_user_userpool.arn
+#   depends_on    = [aws_lambda_function.custom_message]
 
 
-}
+# }
 
 #---------------------------------------------------------------
 # LAYERS....
@@ -312,11 +312,11 @@ resource "aws_lambda_layer_version" "request_layer" {
 # }
 
 
-data "archive_file" "lambda_function" {
-  type        = "zip"
-  source_file = "${path.module}/code/custom-auth/customSignUpMessage.py"
-  output_path = "${path.module}/code/zip/customSignUpMessage.zip"
-}
+# data "archive_file" "lambda_function" {
+#   type        = "zip"
+#   source_file = "${path.module}/code/custom-auth/customSignUpMessage.py"
+#   output_path = "${path.module}/code/zip/customSignUpMessage.zip"
+# }
 
 ######### DEFINE CUSTOM AUTH LAMBDA  #############################
 
