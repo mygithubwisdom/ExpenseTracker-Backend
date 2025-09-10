@@ -14,19 +14,25 @@ const MONGO_URI = process.env.MONGODB_URI;
 
 // Logic to connect to DB
 let isConnected = false;
+let connectionPromise = null;
+
 const connectToDB = async () => {
   if (isConnected) return;
-  try {
-    await mongoose.connect(MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    isConnected = true;
-    console.log("MongoDB connected successfully");
-  } catch (error) {
-    console.log("Failed to connect to DB");
-    throw error;
+  
+  if (!connectionPromise) {
+    connectionPromise = mongoose.connect(MONGO_URI)
+      .then(() => {
+        isConnected = true;
+        console.log("MongoDB connected successfully");
+      })
+      .catch((error) => {
+        console.log("Failed to connect to DB");
+        connectionPromise = null;
+        throw error;
+      });
   }
+  
+  return connectionPromise;
 };
 
 // Define User Schema
@@ -98,19 +104,20 @@ exports.lambda_handler = async (event) => {
 
     return {
       statusCode: 201,
-      body: JSON.stringify({
+      body: {
         message:
           "Sign up successful. Please check your email for verification code.",
         data: response,
-      }),
+      },
     };
   } catch (error) {
     console.error(error.message);
     return {
       statusCode: 400,
-      body: JSON.stringify({
+      body: {
         error: error.message || "Sign-up not successful",
-      }),
+      },
     };
   }
 };
+ 
