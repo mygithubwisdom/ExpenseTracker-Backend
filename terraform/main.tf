@@ -1,7 +1,8 @@
 locals {
   RESOURCES_PREFIX = "${lower(var.ENV)}-trackam"
   ACCOUNTID        = data.aws_caller_identity.current.account_id
-  INFO_EMAIL       = "info@email.com"
+  INFO_EMAIL       = "contacttrackam25@gmail.com"
+  TRACKAM_EMAIL    = "contacttrackam25@gmail.com"
 
   DOMAIN_NAME = "api.${var.WEBAPP_DNS}"
   # cognito_domain_name        = lower(var.ENV) == "prod" ? "auth.${var.WEBAPP_DNS}" : "auth.${var.WEBAPP_DNS}"
@@ -147,16 +148,16 @@ module "open" {
    RESOURCES_PREFIX = local.RESOURCES_PREFIX
  }
 
-
+# arn:aws:s3:::trackam-template
 ##==================================================
 #  SES creation....................
 ##==================================================
 
-#  module "ses" {
-#    source     = "./modules/ses"
-#    #TRACKAM_EMAIL = local.TRACKAM_EMAIL
-#    INFO_EMAIL    = local.INFO_EMAIL
-#  }
+ module "ses" {
+   source     = "./modules/ses"
+   TRACKAM_EMAIL = local.TRACKAM_EMAIL
+   INFO_EMAIL    = local.INFO_EMAIL
+ }
 
 
 
