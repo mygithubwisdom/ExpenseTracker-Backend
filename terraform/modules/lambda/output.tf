@@ -22,7 +22,7 @@ output "LAMBDA_SIGNUP_FUNCTION_NAME" {
 #  CONFIRM SIGNUP
 # =================================================================
 output "LAMBDA_CONFIRM_SIGNUP_FUNCTION_ARN" {
-  value = aws_lambda_function.signup_function.arn
+  value = aws_lambda_function.confirm_signup_function.arn
 }
 output "LAMBDA_CONFIRM_SIGNUP_FUNCTION_NAME" {
   value = aws_lambda_function.confirm_signup_function.function_name

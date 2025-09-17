@@ -53,6 +53,7 @@ resource "aws_cognito_user_pool" "congito_end_user_userpool" {
      create_auth_challenge          = aws_lambda_function.create_custom_auth.arn
      define_auth_challenge          = aws_lambda_function.define_custom_auth.arn
      verify_auth_challenge_response = aws_lambda_function.verify_custom_auth.arn
+
    }
   sms_configuration {
     external_id    = var.IAM_COGNITO_ASSUMABLE_ROLE_EXTERNAL_ID
@@ -384,7 +385,7 @@ resource "aws_lambda_function" "define_custom_auth" {
       ENV             = "${var.ENV}"
       #USER_TABLE_NAME = "${var.USER_TABLE_NAME}"
       BUCKET_NAME   = "${var.BUCKET_NAME}"
-     # MONGODB_URI_1 = "${var.MONGODB_URI_1}"
+      MONGODB_URI_1 = "${var.MONGODB_URI_1}"
      # MONGODB_URI_2 = "${var.MONGODB_URI_2}"
     }
   }
@@ -462,7 +463,7 @@ resource "aws_lambda_function" "create_custom_auth" {
       ENV             = "${var.ENV}"
      # USER_TABLE_NAME = "${var.USER_TABLE_NAME}"
       BUCKET_NAME   = "${var.BUCKET_NAME}"
-     # MONGODB_URI_1 = "${var.MONGODB_URI_1}"
+      MONGODB_URI_1 = "${var.MONGODB_URI_1}"
      # MONGODB_URI_2 = "${var.MONGODB_URI_2}"
     }
   }
