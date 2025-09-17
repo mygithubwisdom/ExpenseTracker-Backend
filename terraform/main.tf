@@ -142,10 +142,10 @@ module "open" {
 
 
 
-#  module "s3" {
-#    source           = "./modules/s3"
-#    RESOURCES_PREFIX = local.RESOURCES_PREFIX
-#  }
+ module "s3" {
+   source           = "./modules/s3"
+   RESOURCES_PREFIX = local.RESOURCES_PREFIX
+ }
 
 
 ##==================================================
