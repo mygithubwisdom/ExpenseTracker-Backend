@@ -5,9 +5,9 @@ resource "aws_s3_bucket" "trackam" {
     Name = "TrackAm-${var.environment}-bucket"
   }
 
-  lifecycle {
-    create_before_destroy = true
-  }
+  # lifecycle {
+  #   create_before_destroy = true
+  # }
 }
 
 resource "aws_s3_bucket_versioning" "versioning_example" {
