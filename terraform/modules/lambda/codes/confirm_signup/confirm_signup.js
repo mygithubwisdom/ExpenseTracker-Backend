@@ -5,6 +5,8 @@ const {
 
 const CLIENT_ID = process.env.CLIENT_ID;
 
+console.log("CLIENT_ID from environment variable:", CLIENT_ID); 
+
 const client = new CognitoIdentityProviderClient();
 
 exports.lambda_handler = async (event) => {
@@ -34,18 +36,18 @@ exports.lambda_handler = async (event) => {
 
     return {
       statusCode: 200,
-      body: JSON.stringify({
+      body: {
         message: "User confirmed successfully!",
         data: response,
-      }),
+      },
     };
   } catch (error) {
     console.error(error.message);
     return {
       statusCode: 400,
-      body: JSON.stringify({
+      body: {
         error: error.message || "Confirmation failed",
-      }),
+      },
     };
   }
 };

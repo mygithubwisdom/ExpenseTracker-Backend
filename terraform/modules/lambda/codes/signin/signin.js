@@ -38,18 +38,18 @@ const {
   
 	  return {
 		statusCode: 200,
-		body: JSON.stringify({
+		body: {
 		  message: "Sign in successful!",
 		  tokens: response.AuthenticationResult, // contains AccessToken, IdToken, RefreshToken
-		}),
+		},
 	  };
 	} catch (error) {
 	  console.error(error.message);
 	  return {
 		statusCode: 400,
-		body: JSON.stringify({
+		body: {
 		  error: error.message || "Signin failed",
-		}),
+		},
 	  };
 	}
   };
