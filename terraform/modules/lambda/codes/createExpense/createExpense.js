@@ -1,14 +1,61 @@
-const { connectToDB } = require('../utils/dbConnection');
-const Expense = require('../models/Expense');
+const mongoose = require('mongoose');
 
-exports.lambda_handler = async (event) => {
+const MONGO_URI = process.env.MONGODB_URI;
+
+let isConnected = false;
+let connectionPromise = null;
+
+const connectToDB = async () => {
+  if (isConnected) return;
+  
+  if (!connectionPromise) {
+    connectionPromise = mongoose.connect(MONGO_URI)
+      .then(() => {
+        isConnected = true;
+        console.log("MongoDB connected successfully");
+      })
+      .catch((error) => {
+        console.log("Failed to connect to DB");
+        connectionPromise = null;
+        throw error;
+      });
+  }
+  
+  return connectionPromise;
+};
+
+// Define Expense Schema (same pattern as User schema)
+const ExpenseSchema = new mongoose.Schema({
+    userId: String,
+    category: String,
+    title: String,
+    amount: Number,
+    date: Date,
+    description: String,
+    imageUrl: String,
+    type: { type: String, default: "expense" },
+    created_at: { type: Date, default: Date.now },
+    updated_at: { type: Date, default: Date.now },
+});
+
+// Prevent model overwrite in Lambda warm starts
+const Expense = mongoose.models.Expense || mongoose.model("Expense", ExpenseSchema);
+
+
+exports.lambbda_handler = async (event) => {
     try {
         await connectToDB();
-        
+
+        // Safe body parsing (same as your code)
+        let body = event.body;
+        if (typeof body === "string") {
+            body = JSON.parse(body);
+        }
+
         const userId = event.requestContext.authorizer.claims.sub;
-        const { category, title, amount, date, description, imageUrl } = JSON.parse(event.body);
+        const { category, title, amount, date, description, imageUrl } = body;
         
-        
+        // Validation
         if (!category || !title || !amount || !date) {
             return {
                 statusCode: 400,

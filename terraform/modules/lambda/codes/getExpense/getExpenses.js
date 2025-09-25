@@ -1,5 +1,47 @@
-const { connectToDB } = require('../utils/dbConnection');
-const Expense = require('../models/Expense');
+const mongoose = require('mongoose');
+
+const MONGO_URI = process.env.MONGODB_URI;
+
+// Logic to connect to DB (same as signup code)
+let isConnected = false;
+let connectionPromise = null;
+
+const connectToDB = async () => {
+  if (isConnected) return;
+  
+  if (!connectionPromise) {
+    connectionPromise = mongoose.connect(MONGO_URI)
+      .then(() => {
+        isConnected = true;
+        console.log("MongoDB connected successfully");
+      })
+      .catch((error) => {
+        console.log("Failed to connect to DB");
+        connectionPromise = null;
+        throw error;
+      });
+  }
+  
+  return connectionPromise;
+};
+
+// Define Expense Schema (same pattern as User schema)
+const ExpenseSchema = new mongoose.Schema({
+    userId: String,
+    category: String,
+    title: String,
+    amount: Number,
+    date: Date,
+    description: String,
+    imageUrl: String,
+    type: { type: String, default: "expense" },
+    created_at: { type: Date, default: Date.now },
+    updated_at: { type: Date, default: Date.now },
+});
+
+// Prevent model overwrite in Lambda warm starts
+const Expense = mongoose.models.Expense || mongoose.model("Expense", ExpenseSchema);
+
 
 exports.lambda_handler = async (event) => {
     try {
@@ -25,7 +67,7 @@ exports.lambda_handler = async (event) => {
         
         // Get expenses with sorting
         const expenses = await Expense.find(filter)
-            .sort({ date: -1, createdAt: -1 })
+            .sort({ date: -1, created_at: -1 })
             .lean();
         
         // Calculate total
