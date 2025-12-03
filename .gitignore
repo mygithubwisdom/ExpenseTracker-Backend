@@ -1,5 +1,16 @@
 *.terraform*
 *.tfstate*
 *.DS_Store*
+.terraform/
+.env
+*.tfvars
+node_modules/
+
+# AWS/Lambda deployment artifacts
+java_layer.zip
+javascript_layer.zip
+mongoose-layer.zip
+*.zip 
+
 
 

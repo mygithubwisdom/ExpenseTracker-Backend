@@ -1,6 +1,6 @@
 import json
 import boto3
-from boto3.dynamodb.conditions import Key, Attr
+from boto3.dynamodb.conditions import Key
 import logging
 from os import getenv
 
@@ -9,8 +9,8 @@ table_name = getenv("USER_TABLE_NAME")
 table = dynamodb.Table(table_name)
 
 
-logging.basicConfig(format='%(asctime)s %(message)s',
-                    datefmt='%m/%d/%Y %I:%M:%S %p')
+logging.basicConfig(format='%(asctime)s %("")s',
+                    datefmt='%I:%M:%S %p')
 
 
 def lambda_handler(event, context):
@@ -35,16 +35,3 @@ def lambda_handler(event, context):
         logging.error(e)
     print({'end event':event})
     return event
-
-
-def get_email_code(email):
-    query = f"login_{email}".lower()
-    response = table.query(
-        KeyConditionExpression=Key('pk').eq(query)
-    )
-    if response.get('Items'):
-        items = response.get('Items')[0]
-        code = items.get('sk')
-        return code
-    return None
-

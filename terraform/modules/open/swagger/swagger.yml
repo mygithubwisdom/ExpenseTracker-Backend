@@ -31,7 +31,7 @@ paths:
                         responseParameters:
                             method.response.header.Access-Control-Allow-Methods: "'DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT'"
                             method.response.header.Access-Control-Allow-Headers:
-                                "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token
+                                "'Content-Security-Token
                                 '"
                             method.response.header.Access-Control-Allow-Origin: "'*'"
                 requestTemplates:
@@ -55,7 +55,7 @@ paths:
                             type: 'string'
             x-amazon-apigateway-integration:
                 httpMethod: 'POST'
-                uri: 'arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/${LAMBDA_SIGNUP_FUNCTION_ARN}/invocations'
+                uri: 'arn:aws:apigateway:{LAMBDA_SIGNUP_FUNCTION_ARN}/invocations'
                 responses:
                     default:
                         statusCode: '200'
@@ -108,7 +108,7 @@ paths:
                         statusCode: '200'
                         responseParameters:
                             method.response.header.Access-Control-Allow-Methods: "'OPTIONS,POST'"
-                            method.response.header.Access-Control-Allow-Headers: "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token'"
+                            method.response.header.Access-Control-Allow-Headers: "'Content-Type-Key,X-Amz-Security-Token'"
                             method.response.header.Access-Control-Allow-Origin: "'*'"
                 requestTemplates:
                     application/json: '{"statusCode": 200}'
@@ -131,7 +131,7 @@ paths:
                             type: 'string'   
             x-amazon-apigateway-integration:
                 httpMethod: 'POST'
-                uri: 'arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/${LAMBDA_SIGNIN_FUNCTION_ARN}/invocations'
+                uri: 'arn:aws:apigateway:/${LAMBDA_SIGNIN_FUNCTION_ARN}/invocations'
                 responses:
                     default:
                         statusCode: '200'
@@ -184,7 +184,7 @@ paths:
                             statusCode: '200'
                             responseParameters:
                                 method.response.header.Access-Control-Allow-Methods: "'OPTIONS,POST'"
-                                method.response.header.Access-Control-Allow-Headers: "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token'"
+                                method.response.header.Access-Control-Allow-Headers: "'Content-Type,AuthorizatiToken'"
                                 method.response.header.Access-Control-Allow-Origin: "'*'"
                     requestTemplates:
                         application/json: '{"statusCode": 200}'
@@ -207,7 +207,7 @@ paths:
                             type: 'string'
             x-amazon-apigateway-integration:
                 httpMethod: 'POST'
-                uri: 'arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/${LAMBDA_CONFIRM_SIGNUP_FUNCTION_ARN}/invocations'
+                uri: 'arn:aws:apigateway:/functions/${LAMBDA_CONFIRM_SIGNUP_FUNCTION_ARN}/invocations'
                 responses:
                     default:
                         statusCode: '200'
@@ -260,7 +260,7 @@ paths:
                         statusCode: '200'
                         responseParameters:
                             method.response.header.Access-Control-Allow-Methods: "'OPTIONS,POST'"
-                            method.response.header.Access-Control-Allow-Headers: "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token'"
+                            method.response.header.Access-Control-Allow-Headers: "'Content-Type,Authorization,X-,X-Amz-Security-Token'"
                             method.response.header.Access-Control-Allow-Origin: "'*'"
                 requestTemplates:
                     application/json: '{"statusCode": 200}'
@@ -283,7 +283,7 @@ paths:
                             type: 'string'
             x-amazon-apigateway-integration:
                 httpMethod: 'POST'
-                uri: 'arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/${LAMBDA_FORGOT_PASSWORD_FUNCTION_ARN}/invocations'
+                uri: 'arn:aws::lambda:path/2015-03-31/functions/${LAMBDA_FORGOT_PASSWORD_FUNCTION_ARN}/invocations'
                 responses:
                     default:
                         statusCode: '200'
@@ -336,7 +336,7 @@ paths:
                         statusCode: '200'
                         responseParameters:
                             method.response.header.Access-Control-Allow-Methods: "'OPTIONS,POST'"
-                            method.response.header.Access-Control-Allow-Headers: "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token'"
+                            method.response.header.Access-Control-Allow-Headers: "'Content-Type,Authorization,-Security-Token'"
                             method.response.header.Access-Control-Allow-Origin: "'*'"
                 requestTemplates:
                     application/json: '{"statusCode": 200}'
@@ -359,7 +359,7 @@ paths:
                             type: 'string'
             x-amazon-apigateway-integration:
                 httpMethod: 'POST'
-                uri: 'arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/${LAMBDA_CONFIRM_FORGOT_PASSWORD_FUNCTION_ARN}/invocations'
+                uri: 'arn:aws{LAMBDA_CONFIRM_FORGOT_PASSWORD_FUNCTION_ARN}/invocations'
                 responses:
                     default:
                         statusCode: '200'
@@ -412,7 +412,7 @@ paths:
                         statusCode: '200'
                         responseParameters:
                             method.response.header.Access-Control-Allow-Methods: "'OPTIONS,POST'"
-                            method.response.header.Access-Control-Allow-Headers: "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token'"
+                            method.response.header.Access-Control-Allow-Headers: "''"
                             method.response.header.Access-Control-Allow-Origin: "'*'"
                 requestTemplates:
                     application/json: '{"statusCode": 200}'

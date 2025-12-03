@@ -26,15 +26,15 @@ resource "aws_s3_bucket_public_access_block" "trackam-public_access" {
 }
 
 resource "aws_s3_bucket_policy" "bucket_policy" {
-  bucket = aws_s3_bucket.trackam.id
+  bucket = aws
   policy = jsonencode({
     Version = "2012-10-17",
     Statement = [
       {
-        Sid       = "AllowReadOnlyAccessForSpecificUsers",
+        Sid       = "",
         Effect    = "Allow",
         Principal = {
-          AWS = "arn:aws:iam::036990104037:user/Oluwaseunfunmi" # Replace with your IAM ARN
+          AWS = "" # Replace with your IAM ARN
         },
         Action   = "s3:GetObject",
         Resource = "arn:aws:s3:::${var.bucket_name}/*"

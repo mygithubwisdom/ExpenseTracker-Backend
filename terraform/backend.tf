@@ -4,7 +4,7 @@ terraform {
     encrypt = true
     bucket  = "trackam-statefile-backend"
     key     = "dev/terraform.tfstate"
-    region  = "us-east-1"
+    region  = ""
     # dynamodb_table = "testworklock"
   }
 }

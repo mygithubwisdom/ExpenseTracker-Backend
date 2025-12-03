@@ -1,5 +1,5 @@
 variable "region" {
-  default = "us-east-1"
+  default = ""
 }
 
 variable "ENV" {
@@ -42,12 +42,12 @@ variable "COGNITO_GROUP_LIST" {
 }
 
 variable "IAM_COGNITO_ASSUMABLE_ROLE_EXTERNAL_ID" {
-  default = "ghU968996890"
+  default = ""
   type    = string
 }
 
 variable "WEBAPP_DNS" {
-  default = "mydomain.com"
+  default = ""
 }
 variable "WEBAPP_CERT" {
   type    = string
@@ -58,13 +58,13 @@ variable "WEBAPP_CERT_ARN" {
   default = "kjsn"
   }
 variable "RESEND_API_KEY" {
-  default = "JJJ"
+  default = ""
   }
 
 variable "MONGODB_URI_1" {
-  default = "mongodb+srv://nomsowisdom3286:Mv3OQYjoCznSo0j5@cluster0.kjk8cyq.mongodb.net/Trackam?retryWrites=true&w=majority&appName=Cluster01"
+  default = "mongodb+srv://admin"
 }
 
 #variable "MONGODB_URI_2" {
- # default = "mongodb+srv://vendlitdbUser:<asdfghjkl>@vendlitng.bw9enxs.mongodb.net/?retryWrites=true&w=majority&appName=Vendlitng"
+ # default = "mongodb+srv://vendlitdb"
 #}

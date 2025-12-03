@@ -3,16 +3,16 @@
   #billing_mode   = "PROVISIONED"
  # read_capacity  = 5
   #write_capacity = 5
- # hash_key       = "pk"
- # range_key      = "sk"
+ # hash_key       = ""
+ # range_key      = ""
 
  # attribute {
-  #  name = "pk"
+  #  name = ""
   #  type = "S"
  # }
 
  # attribute {
-  #  name = "sk"
+  #  name = ""
    # type = "S"
  # }
 

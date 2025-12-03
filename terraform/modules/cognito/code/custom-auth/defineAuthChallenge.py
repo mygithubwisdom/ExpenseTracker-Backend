@@ -3,7 +3,7 @@ import boto3
 from boto3.dynamodb.conditions import Key, Attr
 import logging
 
-logging.basicConfig(format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
+logging.basicConfig(format='%(asctime)s %(message)s', datefmt='%m/%d/%Y :%M:%S %p')
 
 
 def lambda_handler(event, context):
