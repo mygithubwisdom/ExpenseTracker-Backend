@@ -9,8 +9,17 @@ node_modules/
 # AWS/Lambda deployment artifacts
 java_layer.zip
 javascript_layer.zip
+
+# Ignore lambda layer zips
+*.zip
+terraform/modules/lambda/layers/*.zip
 mongoose-layer.zip
-*.zip 
+modules/cognito/code/zip/
+
+node_modules/
+build/
+dist/
+logs/
 
 
 
