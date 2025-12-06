@@ -6,21 +6,23 @@
 *.tfvars
 node_modules/
 
-# AWS/Lambda deployment artifacts and ZIP files
-# Ignore all ZIP files to prevent large files in repository
+# AWS/Lambda deployment artifacts - ZIP files
 *.zip
 **/*.zip
-
-# Specific Lambda layer ZIPs (redundant but explicit)
 java_layer.zip
 javascript_layer.zip
 mongoose-layer.zip
 
-# Lambda layer directories
+# Lambda layer ZIPs
 terraform/modules/lambda/layers/*.zip
-terraform/modules/lambda/codes/zip/
-terraform/modules/cognito/code/zip/
+terraform/modules/lambda/layers/**/*.zip
 
+# Cognito code ZIPs
+modules/cognito/code/zip/
+terraform/modules/cognito/code/zip/
+**/cognito/code/zip/
+
+# Build artifacts
 node_modules/
 build/
 dist/
